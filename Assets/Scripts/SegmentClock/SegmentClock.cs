@@ -110,7 +110,7 @@ public class SegmentClock : MonoBehaviour
 
             if (minsSecsDot != null)
             {
-                minsSecsDot.gameObject.SetActive(!minsSecsDot.gameObject.activeInHierarchy);
+                // minsSecsDot.gameObject.SetActive(!minsSecsDot.gameObject.activeInHierarchy);
             }
         }
 
