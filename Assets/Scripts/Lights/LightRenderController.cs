@@ -26,7 +26,8 @@ public class LightRenderController : MonoBehaviour
         bool disabledConditions = Vector3.Distance(transform.position, renderCamera.transform.position) > range;
         if (!disabledConditions)
         {
-            disabledConditions = Vector3.Dot(cameraDirection.normalized, directionToLight.normalized) < cameraFovCos;
+            disabledConditions = Vector3.Dot(cameraDirection.normalized, directionToLight.normalized) < cameraFovCos && // камера не смотрит на источник света
+                Vector3.Distance(transform.position, renderCamera.transform.position) > lightComponent.range; // и расстояние до камеры больше, чем дальность освещения источником
         }
         lightComponent.enabled = !disabledConditions;
     }
