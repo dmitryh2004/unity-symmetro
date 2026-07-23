@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
     private bool isJumpPressed;
     private bool isGrounded;
-    private bool inVent = false;
 
     private PlayerControls controls;
     // PlayerInventoryController inventoryController;
@@ -86,21 +85,12 @@ public class PlayerMovement : MonoBehaviour
     void UpdateFootstepTimer()
     {
         bool isMoving = moveInput != Vector2.zero;
-        if (isMoving && isGrounded && (!isCrouching || inVent))
+        if (isMoving && isGrounded && (!isCrouching))
         {
             footstepTimer += Time.deltaTime;
             if (footstepTimer >= 2f / currentSpeed)
             {
                 footstepTimer = 0f;
-                if (inVent)
-                {
-                    // audioPlayer.PlayVentFootstepAudio();
-                }
-                else
-                {
-                    // audioPlayer.PlayFootstepAudio();
-                }
-                
             }
         }
         else
@@ -145,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
             // получаем нормаль поверхности под ногами
             if (Physics.Raycast(groundCheckPoint.position, Vector3.down, out RaycastHit hit, 1f, groundMask))
             {
-                inVent = hit.collider.gameObject.CompareTag("Vent"); // ставим флаг, что игрок в вентиляции
                 Vector3 groundNormal = hit.normal;
 
                 // проекция направления на плоскость с этой нормалью

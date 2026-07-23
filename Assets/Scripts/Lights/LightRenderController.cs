@@ -13,7 +13,7 @@ public class LightRenderController : MonoBehaviour
     {
         if (lightComponent == null) lightComponent = GetComponent<Light>();
         if (renderCamera == null) renderCamera = Camera.main;
-        cameraFovCos = Mathf.Cos(renderCamera.fieldOfView * Mathf.Deg2Rad);
+        cameraFovCos = Mathf.Cos(renderCamera.fieldOfView / 2 * Mathf.Deg2Rad);
         InvokeRepeating("UpdateLight", 0f, updatePeriod);
     }
 
@@ -26,10 +26,7 @@ public class LightRenderController : MonoBehaviour
         bool disabledConditions = Vector3.Distance(transform.position, renderCamera.transform.position) > range;
         if (!disabledConditions)
         {
-            if (Vector3.Dot(cameraDirection.normalized, directionToLight.normalized) < cameraFovCos)
-            {
-
-            }
+            disabledConditions = Vector3.Dot(cameraDirection.normalized, directionToLight.normalized) < cameraFovCos;
         }
         lightComponent.enabled = !disabledConditions;
     }

@@ -52,13 +52,53 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6378370611459181723, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: -2729251167982160017, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: -2170325798853744886, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: -1875880836469046978, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -1875880836469046978, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
       propertyPath: m_Name
       value: tunnel 2way delimeter
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815263674594881044, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333910729531402658, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316614306134370956, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002134164790432962, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508102488228112204, guid: ceead06e999ac1249be760e994d7bff1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
