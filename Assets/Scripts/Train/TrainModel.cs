@@ -7,20 +7,26 @@ public class TrainModel : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject headJoint, tailJoint;
-    [SerializeField] Animator anim;
+    [SerializeField] Animator leftDoorsAnim, rightDoorsAnim;
+    [SerializeField] HeadTrainModel headVagon, tailVagon;
 
     [Header("Train number management")]
     [Space(10f)]
     [SerializeField] int trainNumber = 2646;
     [SerializeField] TrainNumberGenerator trainNumberLeft, trainNumberRight;
-
-    [Header("Doors management")]
-    [Space(10f)]
-    [SerializeField] bool invertDoors = false;
+    
+    private bool leftDoorsOpened = false, rightDoorsOpened = false;
 
     [Header("Movement")]
     [SerializeField] private SplineContainer rail;
     [SerializeField] private bool invertRotation = false;
+
+    private bool braking = false;
+    private float brakingDeceleration = 1.8f;
+
+    [Header("Indication lamps")]
+    [SerializeField] private TrainIndicationLampController brakeLamp;
+    [SerializeField] private TrainIndicationLampController doorLamp;
 
     private Spline currentSpline;
 
@@ -39,19 +45,58 @@ public class TrainModel : MonoBehaviour
         return tailJoint;
     }
 
-    public Animator GetAnimator()
+    public bool IsBraking() => braking;
+    public void SetBraking(bool b) => braking = b;
+
+    private bool ShouldInvert()
     {
-        return anim;
+        bool headActive = headVagon.IsActive();
+        bool tailActive = tailVagon.IsActive();
+        if (headActive)
+        {
+            return tailVagon == this;
+        }
+        else if (tailActive)
+        {
+            return tailVagon != this;
+        }
+        return false;
     }
 
-    public bool DoorsInverted()
+    public Animator GetLeftDoorsAnimator()
     {
-        return invertDoors;
+        return ShouldInvert() ? rightDoorsAnim : leftDoorsAnim;
     }
 
-    public void InvertDoors(bool invert)
+    public Animator GetRightDoorsAnimator()
     {
-        invertDoors = invert;
+        return ShouldInvert() ? leftDoorsAnim : rightDoorsAnim;
+    }
+
+    public bool LeftDoorsOpened()
+    {
+        return ShouldInvert() ? rightDoorsOpened : leftDoorsOpened;
+    }
+
+    public bool RightDoorsOpened()
+    {
+        return ShouldInvert() ? leftDoorsOpened : rightDoorsOpened;
+    }
+
+    public void SetLeftDoorsOpened(bool opened)
+    {
+        if (ShouldInvert())
+            rightDoorsOpened = opened;
+        else
+            leftDoorsOpened = opened;
+    }
+
+    public void SetRightDoorsOpened(bool opened)
+    {
+        if (ShouldInvert())
+            leftDoorsOpened = opened;
+        else
+            rightDoorsOpened = opened;
     }
 
     public int GetTrainNumber()
@@ -98,6 +143,12 @@ public class TrainModel : MonoBehaviour
         SetTrainNumber(trainNumber);
     }
 
+    private void Update()
+    {
+        brakeLamp.ChangeState(braking);
+        doorLamp.ChangeState(leftDoorsOpened || rightDoorsOpened);
+    }
+
     private void FixedUpdate()
     {
         var native = new NativeSpline(currentSpline);
@@ -119,6 +170,15 @@ public class TrainModel : MonoBehaviour
         if (Vector3.Dot(rb.linearVelocity, transform.forward) < 0)
         {
             engineForward *= -1;
+        }
+
+        if (braking)
+        {
+            Vector3 newVelocity = rb.linearVelocity;
+            float newSpeed = Mathf.Clamp(newVelocity.magnitude - brakingDeceleration * Time.fixedDeltaTime, 0f, 25f);
+
+            newVelocity = newVelocity.normalized * newSpeed;
+            rb.linearVelocity = newVelocity;
         }
 
         if (this is HeadTrainModel htm && htm.IsActive())

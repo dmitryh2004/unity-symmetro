@@ -22,6 +22,7 @@ public class HeadTrainModel : TrainModel
     }
 
     public bool IsActive() => active;
+    public void SetActive(bool active) => this.active = active;
 
     void UpdateLights()
     {
