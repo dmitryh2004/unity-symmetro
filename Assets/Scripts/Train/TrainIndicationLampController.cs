@@ -20,10 +20,12 @@ public class TrainIndicationLampController : MonoBehaviour
     {
         bool oldEnabled = _enabled;
         _enabled = newState;
-        Debug.Log(gameObject.name + ": active=" + _enabled);
 
         if (oldEnabled != newState)
+        {
+            Debug.Log(gameObject.name + ": active=" + _enabled);
             UpdateLight();
+        }
     }
 
     void UpdateLight()

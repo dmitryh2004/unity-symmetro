@@ -9,6 +9,7 @@ public class HeadTrainController : TrainController
     {
         ((HeadTrainModel)trainModel).SetActive(active);
     }
+    public List<TrainController> GetVagonsList() => vagons;
     public void ChangeLeftDoorState(bool open)
     {
         if (open) OpenLeftDoors();

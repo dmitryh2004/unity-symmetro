@@ -21,7 +21,7 @@ public class TrainModel : MonoBehaviour
     [SerializeField] private SplineContainer rail;
     [SerializeField] private bool invertRotation = false;
 
-    private bool braking = false;
+    [SerializeField] private bool braking = true;
     private float brakingDeceleration = 1.8f;
 
     [Header("Indication lamps")]
@@ -89,6 +89,8 @@ public class TrainModel : MonoBehaviour
             rightDoorsOpened = opened;
         else
             leftDoorsOpened = opened;
+
+        GetLeftDoorsAnimator().SetBool("opened", LeftDoorsOpened());
     }
 
     public void SetRightDoorsOpened(bool opened)
@@ -97,6 +99,8 @@ public class TrainModel : MonoBehaviour
             leftDoorsOpened = opened;
         else
             rightDoorsOpened = opened;
+
+        GetRightDoorsAnimator().SetBool("opened", RightDoorsOpened());
     }
 
     public int GetTrainNumber()
@@ -137,6 +141,11 @@ public class TrainModel : MonoBehaviour
         currentSpline = rail;
     }
 
+    public float GetCurrentSpeed()
+    {
+        return rb.linearVelocity.magnitude;
+    }
+
     private void Awake()
     {
         if (rail != null) currentSpline = rail.Splines[0];
@@ -144,6 +153,11 @@ public class TrainModel : MonoBehaviour
     }
 
     private void Update()
+    {
+        UpdateState();
+    }
+
+    protected virtual void UpdateState()
     {
         brakeLamp.ChangeState(braking);
         doorLamp.ChangeState(leftDoorsOpened || rightDoorsOpened);
@@ -154,7 +168,7 @@ public class TrainModel : MonoBehaviour
         var native = new NativeSpline(currentSpline);
         float distance = SplineUtility.GetNearestPoint(native, transform.position, out float3 nearest, out float t);
 
-        transform.position = nearest;
+        rb.MovePosition(nearest);
 
         Vector3 forward = Vector3.Normalize(native.EvaluateTangent(t)) * (invertRotation ? -1 : 1);
         Vector3 up = native.EvaluateUpVector(t);
@@ -163,7 +177,7 @@ public class TrainModel : MonoBehaviour
         var remappedUp = new Vector3(0, 1, 0);
         var axisRemapRotation = Quaternion.Inverse(Quaternion.LookRotation(remappedForward, remappedUp));
 
-        transform.rotation = Quaternion.LookRotation(forward, up) * axisRemapRotation;
+        rb.MoveRotation(Quaternion.LookRotation(forward, up) * axisRemapRotation);
 
         Vector3 engineForward = transform.forward;
 

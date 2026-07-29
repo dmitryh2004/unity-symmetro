@@ -5,10 +5,12 @@ public class TrainController : MonoBehaviour
 {
     protected TrainModel trainModel;
 
-    private void Start()
+    private void Awake()
     {
         trainModel = GetComponent<TrainModel>();
     }
+
+    public TrainModel GetTrainModel() => trainModel;
 
     public void _OpenLeftDoors()
     {

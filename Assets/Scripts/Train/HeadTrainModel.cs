@@ -6,9 +6,9 @@ public class HeadTrainModel : TrainModel
     [Header("Head part management")]
     [SerializeField] bool active;
     [SerializeField] bool lightsEnabled;
-    [SerializeField] List<Light> headLights = new();
-    [SerializeField] List<HeadLightController> headLightControllers = new();
-    [SerializeField] List<HeadLightController> upperHeadLightControllers = new();
+    [SerializeField] List<Light> headLights = new ();
+    [SerializeField] List<HeadLightController> headLightControllers = new ();
+    [SerializeField] List<HeadLightController> upperHeadLightControllers = new ();
 
     [SerializeField] TrainEngine engine;
 
@@ -22,7 +22,18 @@ public class HeadTrainModel : TrainModel
     }
 
     public bool IsActive() => active;
-    public void SetActive(bool active) => this.active = active;
+    public void SetActive(bool active)
+    {
+        this.active = active;
+        engine.SetActive(active);
+        UpdateLights();
+    }
+
+    public void SetLightsEnabled(bool lightsEnabled)
+    {
+        this.lightsEnabled = lightsEnabled;
+        UpdateLights();
+    }
 
     void UpdateLights()
     {
@@ -42,8 +53,9 @@ public class HeadTrainModel : TrainModel
         }
     }
 
-    private void Update()
+    override protected void UpdateState()
     {
+        base.UpdateState();
         speedController.SetSpeedText(GetRigidbody().linearVelocity.magnitude);
     }
 }

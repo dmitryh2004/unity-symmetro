@@ -1,9 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ControlPanelButton : MonoBehaviour
+public class ControlPanelButton : Interactable
 {
     [SerializeField] UnityEvent callback;
+
+    public override void Interact()
+    {
+        Press();
+    }
 
     public void Press()
     {
