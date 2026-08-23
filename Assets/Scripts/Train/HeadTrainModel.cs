@@ -7,8 +7,8 @@ public class HeadTrainModel : TrainModel
     [SerializeField] bool active;
     [SerializeField] bool lightsEnabled;
     [SerializeField] List<Light> headLights = new ();
-    [SerializeField] List<HeadLightController> headLightControllers = new ();
-    [SerializeField] List<HeadLightController> upperHeadLightControllers = new ();
+    [SerializeField] List<LightEmissivePartController> headLightControllers = new ();
+    [SerializeField] List<LightEmissivePartController> upperHeadLightControllers = new ();
 
     [SerializeField] TrainEngine engine;
 
@@ -43,11 +43,11 @@ public class HeadTrainModel : TrainModel
         {
             light.gameObject.SetActive(lightCondition);
         }
-        foreach (HeadLightController hlc in headLightControllers)
+        foreach (LightEmissivePartController hlc in headLightControllers)
         {
             if (lightCondition) hlc.Activate(); else hlc.Deactivate();
         }
-        foreach (HeadLightController hlc in upperHeadLightControllers)
+        foreach (LightEmissivePartController hlc in upperHeadLightControllers)
         {
             if (upperLightCondition) hlc.Activate(); else hlc.Deactivate();
         }

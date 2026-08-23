@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HeadLightController : MonoBehaviour
+public class LightEmissivePartController : MonoBehaviour
 {
     [SerializeField] Color color;
     [SerializeField] bool _enabled = false;
