@@ -5,6 +5,7 @@ public class HeadLightController : MonoBehaviour
     [SerializeField] Color color;
     [SerializeField] bool _enabled = false;
     [SerializeField] Transform lightPart;
+    [SerializeField] GameObject flaresParent;
     MeshRenderer lightPartMR;
     private void Awake()
     {
@@ -34,6 +35,8 @@ public class HeadLightController : MonoBehaviour
         {
             lightPartMR.materials[0].SetColor("_EmissionColor", Color.black);
         }
+
+        flaresParent?.SetActive(_enabled);
     }
 
     public void Activate()
