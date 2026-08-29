@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
     private bool isJumpPressed;
     private bool isGrounded;
+    private bool isSeated = false;
 
     private PlayerControls controls;
     // PlayerInventoryController inventoryController;
@@ -76,6 +77,11 @@ public class PlayerMovement : MonoBehaviour
         isJumpPressed = (context.performed) ? true : false;
     }
 
+    public void SetSeated(bool seated)
+    {
+        isSeated = seated;
+    }
+
     private void Update()
     {
         UpdateSpeed();
@@ -123,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isSeated) return; // если игрок сидит - не двигаемся/прыгаем
+
         // базовое желаемое направление (в локальных осях)
         Vector3 inputDir = (transform.forward * moveInput.y + transform.right * moveInput.x).normalized;
 

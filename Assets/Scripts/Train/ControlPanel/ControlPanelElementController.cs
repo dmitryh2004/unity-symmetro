@@ -2,10 +2,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum ControlPanelButtonColors
+{
+    White = 0,
+    Red,
+    Yellow,
+    Green,
+    Blue,
+    Purple
+}
 public class ControlPanelElementController : Interactable
 {
     [SerializeField] UnityEvent<bool> callback;
     [SerializeField] Animator anim;
+    [SerializeField] ControlPanelButtonColors color = ControlPanelButtonColors.White;
     [SerializeField] List<IBoolCondition> changeStateConditions = new ();
     [SerializeField] List<IBoolCondition> invokeCallbackConditions = new ();
     [SerializeField] bool startState = false;
@@ -15,6 +25,12 @@ public class ControlPanelElementController : Interactable
     {
         if (anim == null) anim = GetComponent<Animator>();
         currentState = startState;
+
+        if (anim != null)
+        {
+            if (CompareTag("ColoredButton"))
+                anim.SetInteger("ButtonColor", (int)color);
+        }
     }
 
     private void Start()
@@ -22,13 +38,30 @@ public class ControlPanelElementController : Interactable
         InvokeCallback(currentState);
     }
 
-    public void ChangeState(bool newState)
+    public bool AreChangeStateConditionsMet()
     {
         foreach (IBoolCondition condition in changeStateConditions)
         {
             if (condition == null) continue;
-            if (!condition.Check()) return;
+            if (!condition.Check()) return false;
         }
+        return true;
+    }
+
+    public bool AreInvokeCallbackConditionsMet()
+    {
+        foreach (IBoolCondition condition in invokeCallbackConditions)
+        {
+            if (condition == null) continue;
+            if (!condition.Check()) return false;
+        }
+        return true;
+    }
+
+    public void ChangeState(bool newState)
+    {
+        if (!AreChangeStateConditionsMet()) return;
+
         currentState = newState;
         if (anim != null)
             anim.SetBool("state", currentState);
@@ -46,11 +79,8 @@ public class ControlPanelElementController : Interactable
 
     void InvokeCallback(bool var)
     {
-        foreach (IBoolCondition condition in invokeCallbackConditions)
-        {
-            if (condition == null) continue;
-            if (!condition.Check()) return;
-        }
+        if (!AreInvokeCallbackConditionsMet()) return;
+
         Debug.Log($"{gameObject.name}: callback invoked");
         callback?.Invoke(var);
     }

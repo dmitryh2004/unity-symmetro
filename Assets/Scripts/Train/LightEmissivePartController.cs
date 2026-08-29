@@ -36,7 +36,8 @@ public class LightEmissivePartController : MonoBehaviour
             lightPartMR.materials[0].SetColor("_EmissionColor", Color.black);
         }
 
-        flaresParent?.SetActive(_enabled);
+        if (flaresParent != null)
+            flaresParent.SetActive(_enabled);
     }
 
     public void Activate()
