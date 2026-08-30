@@ -12,7 +12,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: emissive test.001
+    second: {fileID: 2100000, guid: 725122b194ab7b34fb3d92f401ab1660, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: train_ads
+    second: {fileID: 2100000, guid: c97417e71166bbd468d0ad639a867312, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: train_ads.001
     second: {fileID: 2100000, guid: c97417e71166bbd468d0ad639a867312, type: 2}
   - first:
       type: UnityEngine:Material
@@ -22,7 +32,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: train_base.001
+    second: {fileID: 2100000, guid: b13e04ed4e331394285f1d5e7487eb14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: train_details
+    second: {fileID: 2100000, guid: 1ea46338aaa43b74ea75282a2e235a66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: train_details.001
     second: {fileID: 2100000, guid: 1ea46338aaa43b74ea75282a2e235a66, type: 2}
   - first:
       type: UnityEngine:Material
@@ -32,7 +52,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: train_glass.001
+    second: {fileID: 2100000, guid: 7ed087510db2c5b4db0ec7d9993e4867, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: train_in
+    second: {fileID: 2100000, guid: 8785de6915a6a494f873e8fa7e679ff1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: train_in.001
     second: {fileID: 2100000, guid: 8785de6915a6a494f873e8fa7e679ff1, type: 2}
   - first:
       type: UnityEngine:Material
@@ -42,7 +72,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: train_line_navigation.001
+    second: {fileID: 2100000, guid: 698a8a64842c63f4fb47747e05f87806, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: train_metro_scheme
+    second: {fileID: 2100000, guid: 5f8013727f10258459655bca390f0189, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: train_metro_scheme.001
     second: {fileID: 2100000, guid: 5f8013727f10258459655bca390f0189, type: 2}
   materials:
     materialImportMode: 2
