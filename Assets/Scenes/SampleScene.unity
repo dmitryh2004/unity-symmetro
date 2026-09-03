@@ -63121,6 +63121,10 @@ PrefabInstance:
       propertyPath: tailVagon
       value: 
       objectReference: {fileID: 1650050614}
+    - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+      propertyPath: trainNumber
+      value: 897
+      objectReference: {fileID: 0}
     - target: {fileID: 5608404826473290072, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: m_ConnectedBody
       value: 

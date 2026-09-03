@@ -16,6 +16,9 @@ public class ControlPanelSvetodiodController : MonoBehaviour
             _light.enabled = false;
             _light.color = color;
         }
+    }
+
+    private void Start() {
         ChangeState(false);
     }
 
@@ -27,7 +30,7 @@ public class ControlPanelSvetodiodController : MonoBehaviour
 
     void UpdateLights()
     {
-        _light.enabled = active;
+        if (_light != null) _light.enabled = active;
         material.SetColor("_EmissionColor", active ? color : Color.black);
     }
 }
