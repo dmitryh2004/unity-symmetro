@@ -28,6 +28,12 @@ public class TrainModel : MonoBehaviour
     [SerializeField] private TrainIndicationLampController brakeLamp;
     [SerializeField] private TrainIndicationLampController doorLamp;
 
+    [Header("Vagon lamps")]
+    [SerializeField] private TrainLampController alarmLampController;
+    [SerializeField] private TrainLampController regularLampController;
+
+    bool regularLampsOn = false;
+
     private Spline currentSpline;
 
     public Rigidbody GetRigidbody()
@@ -44,6 +50,8 @@ public class TrainModel : MonoBehaviour
     {
         return tailJoint;
     }
+
+    public bool IsPoweredUp() => (headVagon != null ? headVagon.IsActive() : false) || (tailVagon != null ? tailVagon.IsActive() : false);
 
     public bool IsBraking() => braking;
     public void SetBraking(bool b) => braking = b;
@@ -122,7 +130,7 @@ public class TrainModel : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{gameObject.name}: задан неправильный номер вагона ({number})");
+            Debug.LogWarning($"{gameObject.name}: пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ({number})");
         }
     }
 
@@ -146,6 +154,9 @@ public class TrainModel : MonoBehaviour
         return rb.linearVelocity.magnitude;
     }
 
+    public bool RegularLampsOn() => regularLampsOn;
+    public void SetRegularLampsState(bool newState) => regularLampsOn = newState;
+
     private void Awake()
     {
         if (rail != null) currentSpline = rail.Splines[0];
@@ -161,6 +172,15 @@ public class TrainModel : MonoBehaviour
     {
         brakeLamp.ChangeState(braking);
         doorLamp.ChangeState(leftDoorsOpened || rightDoorsOpened);
+        UpdateLamps();
+    }
+
+    private void UpdateLamps() {
+        bool alarmLampState = IsPoweredUp();
+        bool regularLampState = alarmLampState && regularLampsOn;
+
+        if (alarmLampState != alarmLampController.IsActive()) alarmLampController.SetState(alarmLampState);
+        if (regularLampState != regularLampController.IsActive()) regularLampController.SetState(regularLampState);
     }
 
     private void FixedUpdate()

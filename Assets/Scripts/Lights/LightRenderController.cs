@@ -7,6 +7,7 @@ public class LightRenderController : MonoBehaviour
     [SerializeField] float range = 150f;
     [SerializeField] float updatePeriod = .5f;
     float cameraFovCos;
+    bool shouldBeEnabled = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +16,10 @@ public class LightRenderController : MonoBehaviour
         if (renderCamera == null) renderCamera = Camera.main;
         cameraFovCos = Mathf.Cos(renderCamera.fieldOfView / 2 * Mathf.Deg2Rad);
         InvokeRepeating("UpdateLight", 0f, updatePeriod);
+    }
+
+    public void SetShouldBeEnabled(bool enabled) {
+        shouldBeEnabled = enabled;
     }
 
     void UpdateLight()
@@ -26,9 +31,9 @@ public class LightRenderController : MonoBehaviour
         bool disabledConditions = Vector3.Distance(transform.position, renderCamera.transform.position) > range;
         if (!disabledConditions)
         {
-            disabledConditions = Vector3.Dot(cameraDirection.normalized, directionToLight.normalized) < cameraFovCos && // камера не смотрит на источник света
-                Vector3.Distance(transform.position, renderCamera.transform.position) > lightComponent.range; // и расстояние до камеры больше, чем дальность освещения источником
+            disabledConditions = Vector3.Dot(cameraDirection.normalized, directionToLight.normalized) < cameraFovCos && // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+                Vector3.Distance(transform.position, renderCamera.transform.position) > lightComponent.range; // пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
-        lightComponent.enabled = !disabledConditions;
+        lightComponent.enabled = !disabledConditions && shouldBeEnabled;
     }
 }
