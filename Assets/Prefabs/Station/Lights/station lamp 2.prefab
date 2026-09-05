@@ -138,6 +138,7 @@ MonoBehaviour:
   lightComponent: {fileID: 1808305329515838269}
   range: 150
   updatePeriod: 0.5
+  shouldBeEnabled: 1
 --- !u!1001 &1125033807919401940
 PrefabInstance:
   m_ObjectHideFlags: 0

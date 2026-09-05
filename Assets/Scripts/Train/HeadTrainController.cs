@@ -4,10 +4,12 @@ using UnityEngine;
 public class HeadTrainController : TrainController
 {
     [SerializeField] List<TrainController> vagons = new();
+    [SerializeField] HeadTrainModel oppositeCabin;
 
     public void SetActive(bool active)
     {
         ((HeadTrainModel)trainModel).SetActive(active);
+        oppositeCabin.UpdateLights();
     }
     public List<TrainController> GetVagonsList() => vagons;
     public void ChangeLeftDoorState(bool open)
@@ -60,5 +62,18 @@ public class HeadTrainController : TrainController
         {
             vagon._SetBraking(braking);
         }
+    }
+
+    public void SetRegularLightState(bool newState)
+    {
+        foreach (var vagon in vagons)
+        {
+            vagon._SetRegularLightState(newState);
+        }
+    }
+
+    public void SetCabinLightState(bool newState)
+    {
+        ((HeadTrainModel)trainModel).SetCabinLightEnabled(newState);
     }
 }

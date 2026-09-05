@@ -7,7 +7,7 @@ public class LightRenderController : MonoBehaviour
     [SerializeField] float range = 150f;
     [SerializeField] float updatePeriod = .5f;
     float cameraFovCos;
-    bool shouldBeEnabled = false;
+    [SerializeField] bool shouldBeEnabled = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

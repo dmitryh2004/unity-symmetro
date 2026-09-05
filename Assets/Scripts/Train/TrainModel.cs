@@ -170,8 +170,8 @@ public class TrainModel : MonoBehaviour
 
     protected virtual void UpdateState()
     {
-        brakeLamp.ChangeState(braking);
-        doorLamp.ChangeState(leftDoorsOpened || rightDoorsOpened);
+        brakeLamp.ChangeState(IsPoweredUp() && braking);
+        doorLamp.ChangeState(IsPoweredUp() && (leftDoorsOpened || rightDoorsOpened));
         UpdateLamps();
     }
 

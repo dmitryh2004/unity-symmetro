@@ -36,6 +36,11 @@ public class TrainController : MonoBehaviour
             trainModel.SetRightDoorsOpened(false);
     }
 
+    public void _SetRegularLightState(bool newState)
+    {
+        trainModel.SetRegularLampsState(newState);
+    }
+
     public void _SetBraking(bool braking)
     {
         trainModel.SetBraking(braking);

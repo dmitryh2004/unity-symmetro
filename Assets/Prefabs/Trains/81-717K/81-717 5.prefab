@@ -138,6 +138,7 @@ MonoBehaviour:
   lightComponent: {fileID: 9039480585804516566}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &87394245872947651
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +703,7 @@ MonoBehaviour:
   lightComponent: {fileID: 6171572220730128942}
   range: 250
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &373131994518649844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1198,7 @@ GameObject:
   - component: {fileID: 9010825586735137681}
   - component: {fileID: 7302463843977335932}
   - component: {fileID: 1799418872137227249}
+  - component: {fileID: 8284187733803440066}
   m_Layer: 0
   m_Name: train seats
   m_TagString: Untagged
@@ -1271,6 +1274,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8284187733803440066
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611733887674599409}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6807388446348646513, guid: 1bf3b207adc71c14785a7cf62c220fc8, type: 3}
 --- !u!1 &614398135225854705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,6 +1755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vagons: []
+  oppositeCabin: {fileID: 0}
 --- !u!114 &5875200053455845017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,6 +1795,7 @@ MonoBehaviour:
   upperHeadLightControllers:
   - {fileID: 2394525562457206424}
   engine: {fileID: 8627654366393080024}
+  cabinLight: {fileID: 8723224607793869310}
   speedController: {fileID: 9171744275174129135}
 --- !u!54 &7147831773650948378
 Rigidbody:
@@ -2263,6 +2290,7 @@ MonoBehaviour:
   lightComponent: {fileID: 7373336803539668286}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &900142135421222464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,7 +2647,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.6745098, g: 0.627451, b: 0.8666667, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2712,6 +2740,7 @@ MonoBehaviour:
   lightComponent: {fileID: 6931349931246346328}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &1335811318143659913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,6 +4078,7 @@ MonoBehaviour:
   lightComponent: {fileID: 7629153739556874095}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &1994769945829548405
 GameObject:
   m_ObjectHideFlags: 0
@@ -4976,6 +5006,7 @@ MonoBehaviour:
   lightComponent: {fileID: 5764710482761373493}
   range: 250
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &2659995849176341377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,7 +6177,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.6745098, g: 0.627451, b: 0.8666667, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6239,6 +6270,7 @@ MonoBehaviour:
   lightComponent: {fileID: 1870957743882838614}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &3650571009437501333
 GameObject:
   m_ObjectHideFlags: 0
@@ -7890,7 +7922,10 @@ GameObject:
   - component: {fileID: 4937116271689493114}
   - component: {fileID: 829273523761969496}
   - component: {fileID: 7794288877291302520}
-  m_Layer: 0
+  - component: {fileID: 5200194912467236981}
+  - component: {fileID: 50130133970744134}
+  - component: {fileID: 1186675044511859245}
+  m_Layer: 7
   m_Name: tumbler cabin lighting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7965,6 +8000,84 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &5200194912467236981
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376648661575623783}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 090a10967a084ff45b4014b2ee04c98d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &50130133970744134
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376648661575623783}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0001, y: 0.00013711858, z: 0.00022507274}
+  m_Center: {x: 1.0717519e-18, y: 0.000018566749, z: 0.00011254382}
+--- !u!114 &1186675044511859245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376648661575623783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 1
+  callback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4383431417415365940}
+        m_TargetAssemblyTypeName: HeadTrainController, Assembly-CSharp
+        m_MethodName: SetCabinLightState
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  anim: {fileID: 5200194912467236981}
+  color: 0
+  changeStateConditions:
+  - {fileID: 375488272901970903}
+  invokeCallbackConditions:
+  - {fileID: 375488272901970903}
+  startState: 0
 --- !u!1 &4409540691434290528
 GameObject:
   m_ObjectHideFlags: 0
@@ -8409,6 +8522,7 @@ MonoBehaviour:
   lightComponent: {fileID: 5693368161199337189}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &4645372099488089189
 GameObject:
   m_ObjectHideFlags: 0
@@ -9584,7 +9698,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.6745098, g: 0.627451, b: 0.8666667, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9677,6 +9791,7 @@ MonoBehaviour:
   lightComponent: {fileID: 5247996591408276147}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &5191633420068357599
 GameObject:
   m_ObjectHideFlags: 0
@@ -13314,6 +13429,7 @@ GameObject:
   - component: {fileID: 7773606164870286393}
   - component: {fileID: 8059616600034364633}
   - component: {fileID: 8524898539818753146}
+  - component: {fileID: 8723224607793869310}
   - component: {fileID: 4596504119573190144}
   m_Layer: 0
   m_Name: cabin light
@@ -13425,6 +13541,22 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &8723224607793869310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358078427343503530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9759a5848d9c16f44b3465803b39f3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  lampObject: {fileID: 0}
+  lights:
+  - {fileID: 4596504119573190144}
 --- !u!114 &4596504119573190144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13441,6 +13573,7 @@ MonoBehaviour:
   lightComponent: {fileID: 8059616600034364633}
   range: 15
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &7492017938968264028
 GameObject:
   m_ObjectHideFlags: 0
@@ -14088,7 +14221,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.6745098, g: 0.627451, b: 0.8666667, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -14181,6 +14314,7 @@ MonoBehaviour:
   lightComponent: {fileID: 3197696919152908690}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &7761831136543280884
 GameObject:
   m_ObjectHideFlags: 0
@@ -15844,7 +15978,10 @@ GameObject:
   - component: {fileID: 4282293191746738480}
   - component: {fileID: 6903439796828733647}
   - component: {fileID: 3086695276270600474}
-  m_Layer: 0
+  - component: {fileID: 3918314233087622879}
+  - component: {fileID: 6676879774960495144}
+  - component: {fileID: 5362955705753782722}
+  m_Layer: 7
   m_Name: tumbler salon lighting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15919,6 +16056,84 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3918314233087622879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716128165169863868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 1
+  callback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4383431417415365940}
+        m_TargetAssemblyTypeName: HeadTrainController, Assembly-CSharp
+        m_MethodName: SetRegularLightState
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  anim: {fileID: 5362955705753782722}
+  color: 0
+  changeStateConditions:
+  - {fileID: 375488272901970903}
+  invokeCallbackConditions:
+  - {fileID: 375488272901970903}
+  startState: 0
+--- !u!65 &6676879774960495144
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716128165169863868}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0001, y: 0.00013711858, z: 0.00022507274}
+  m_Center: {x: -5.820766e-11, y: 0.000018566749, z: 0.00011254382}
+--- !u!95 &5362955705753782722
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716128165169863868}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 090a10967a084ff45b4014b2ee04c98d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8785166713178424729
 GameObject:
   m_ObjectHideFlags: 0

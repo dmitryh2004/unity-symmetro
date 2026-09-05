@@ -23,7 +23,7 @@ public class TrainLampController : MonoBehaviour
     }
 
     private void UpdateLamp() {
-        meshRenderer.material.SetColor("_EmissionColor", active ? color : Color.black);
+        if (meshRenderer != null) meshRenderer.material.SetColor("_EmissionColor", active ? color : Color.black);
 
         foreach(LightRenderController light in lights) {
             light.SetShouldBeEnabled(active);

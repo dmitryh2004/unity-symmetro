@@ -11,6 +11,8 @@ public class HeadTrainModel : TrainModel
     [SerializeField] List<LightEmissivePartController> upperHeadLightControllers = new ();
 
     [SerializeField] TrainEngine engine;
+    [SerializeField] TrainLampController cabinLight;
+    bool cabinLightEnabled = false;
 
     [Header("Head panel")]
     [SerializeField] SpeedController speedController;
@@ -35,10 +37,15 @@ public class HeadTrainModel : TrainModel
         UpdateLights();
     }
 
-    void UpdateLights()
+    public void SetCabinLightEnabled(bool enabled)
+    {
+        cabinLightEnabled = enabled;
+    }
+
+    public void UpdateLights()
     {
         bool lightCondition = active && lightsEnabled;
-        bool upperLightCondition = !active;
+        bool upperLightCondition = IsPoweredUp() && !active;
         foreach (LightRenderController light in headLights)
         {
             light.SetShouldBeEnabled(lightCondition);
@@ -57,5 +64,8 @@ public class HeadTrainModel : TrainModel
     {
         base.UpdateState();
         speedController.SetSpeedText(GetRigidbody().linearVelocity.magnitude);
+
+        bool cabinLightEnabled = IsPoweredUp() && this.cabinLightEnabled;
+        if (cabinLightEnabled != cabinLight.IsActive()) cabinLight.SetState(cabinLightEnabled);
     }
 }
