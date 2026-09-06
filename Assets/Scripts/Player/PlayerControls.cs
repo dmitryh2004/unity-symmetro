@@ -278,6 +278,222 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Seat"",
+            ""id"": ""a28928b6-e1b3-4c5e-9b08-164939bb0b12"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""2b1a0e31-04b5-4dfc-ab95-a6ce40e64fc2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ed8a75d-4932-444f-a365-5ab3ff583067"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Flashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""62ab999d-2490-4001-9161-1ca1ae325a2f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StandUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""691acc77-4448-4864-8e46-0271c6388faf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6a4c0e02-49b1-4c20-bfe2-4862c7f34da3"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26104dd2-7fb4-4751-a6f6-0b6f2d766b65"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""820c3fb5-e159-4fd5-976c-19f27381ffd2"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a678d95e-7253-4a8e-b12d-26469181e9ea"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TrainCabinSeat"",
+            ""id"": ""e8df497e-3a0e-40b0-a64e-d728654023f0"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""41aa5424-2602-4eaf-abdf-6e5fc1832aa5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""de1551fb-9820-4151-94c8-2b180ae2cdcf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Flashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""f773f2b5-7da0-4595-8da6-124e5bbdf870"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StandUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""004a8018-0f0f-4e5e-b8c1-106410f06c90"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeverUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ce31e84-baa4-46ee-9986-56be0cb4a805"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeverDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b644556-7866-4b07-b5e9-6980344e5f69"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""903ca132-b493-4120-a1a0-c611777eb431"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb2c28e1-4936-4c43-885f-9dbd50a9ed8b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3013003f-de5e-4098-8e3f-57ba62b88e98"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fbb286a-7aab-4661-9e1f-4719173e6697"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78cc4423-2d48-4b49-b766-d47b89b1f779"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeverUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26ddd1ab-7c77-4b43-8397-8e41fa3d686b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeverDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -291,11 +507,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
         m_Movement_Flashlight = m_Movement.FindAction("Flashlight", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
+        // Seat
+        m_Seat = asset.FindActionMap("Seat", throwIfNotFound: true);
+        m_Seat_Look = m_Seat.FindAction("Look", throwIfNotFound: true);
+        m_Seat_Interact = m_Seat.FindAction("Interact", throwIfNotFound: true);
+        m_Seat_Flashlight = m_Seat.FindAction("Flashlight", throwIfNotFound: true);
+        m_Seat_StandUp = m_Seat.FindAction("StandUp", throwIfNotFound: true);
+        // TrainCabinSeat
+        m_TrainCabinSeat = asset.FindActionMap("TrainCabinSeat", throwIfNotFound: true);
+        m_TrainCabinSeat_Look = m_TrainCabinSeat.FindAction("Look", throwIfNotFound: true);
+        m_TrainCabinSeat_Interact = m_TrainCabinSeat.FindAction("Interact", throwIfNotFound: true);
+        m_TrainCabinSeat_Flashlight = m_TrainCabinSeat.FindAction("Flashlight", throwIfNotFound: true);
+        m_TrainCabinSeat_StandUp = m_TrainCabinSeat.FindAction("StandUp", throwIfNotFound: true);
+        m_TrainCabinSeat_LeverUp = m_TrainCabinSeat.FindAction("LeverUp", throwIfNotFound: true);
+        m_TrainCabinSeat_LeverDown = m_TrainCabinSeat.FindAction("LeverDown", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Movement.enabled, "This will cause a leak and performance issues, PlayerControls.Movement.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Seat.enabled, "This will cause a leak and performance issues, PlayerControls.Seat.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TrainCabinSeat.enabled, "This will cause a leak and performance issues, PlayerControls.TrainCabinSeat.Disable() has not been called.");
     }
 
     /// <summary>
@@ -529,6 +761,286 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="MovementActions" /> instance referencing this action map.
     /// </summary>
     public MovementActions @Movement => new MovementActions(this);
+
+    // Seat
+    private readonly InputActionMap m_Seat;
+    private List<ISeatActions> m_SeatActionsCallbackInterfaces = new List<ISeatActions>();
+    private readonly InputAction m_Seat_Look;
+    private readonly InputAction m_Seat_Interact;
+    private readonly InputAction m_Seat_Flashlight;
+    private readonly InputAction m_Seat_StandUp;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Seat".
+    /// </summary>
+    public struct SeatActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SeatActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Seat/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_Seat_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Seat/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Seat_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Seat/Flashlight".
+        /// </summary>
+        public InputAction @Flashlight => m_Wrapper.m_Seat_Flashlight;
+        /// <summary>
+        /// Provides access to the underlying input action "Seat/StandUp".
+        /// </summary>
+        public InputAction @StandUp => m_Wrapper.m_Seat_StandUp;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Seat; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SeatActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SeatActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SeatActions" />
+        public void AddCallbacks(ISeatActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SeatActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SeatActionsCallbackInterfaces.Add(instance);
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Flashlight.started += instance.OnFlashlight;
+            @Flashlight.performed += instance.OnFlashlight;
+            @Flashlight.canceled += instance.OnFlashlight;
+            @StandUp.started += instance.OnStandUp;
+            @StandUp.performed += instance.OnStandUp;
+            @StandUp.canceled += instance.OnStandUp;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SeatActions" />
+        private void UnregisterCallbacks(ISeatActions instance)
+        {
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Flashlight.started -= instance.OnFlashlight;
+            @Flashlight.performed -= instance.OnFlashlight;
+            @Flashlight.canceled -= instance.OnFlashlight;
+            @StandUp.started -= instance.OnStandUp;
+            @StandUp.performed -= instance.OnStandUp;
+            @StandUp.canceled -= instance.OnStandUp;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SeatActions.UnregisterCallbacks(ISeatActions)" />.
+        /// </summary>
+        /// <seealso cref="SeatActions.UnregisterCallbacks(ISeatActions)" />
+        public void RemoveCallbacks(ISeatActions instance)
+        {
+            if (m_Wrapper.m_SeatActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SeatActions.AddCallbacks(ISeatActions)" />
+        /// <seealso cref="SeatActions.RemoveCallbacks(ISeatActions)" />
+        /// <seealso cref="SeatActions.UnregisterCallbacks(ISeatActions)" />
+        public void SetCallbacks(ISeatActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SeatActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SeatActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SeatActions" /> instance referencing this action map.
+    /// </summary>
+    public SeatActions @Seat => new SeatActions(this);
+
+    // TrainCabinSeat
+    private readonly InputActionMap m_TrainCabinSeat;
+    private List<ITrainCabinSeatActions> m_TrainCabinSeatActionsCallbackInterfaces = new List<ITrainCabinSeatActions>();
+    private readonly InputAction m_TrainCabinSeat_Look;
+    private readonly InputAction m_TrainCabinSeat_Interact;
+    private readonly InputAction m_TrainCabinSeat_Flashlight;
+    private readonly InputAction m_TrainCabinSeat_StandUp;
+    private readonly InputAction m_TrainCabinSeat_LeverUp;
+    private readonly InputAction m_TrainCabinSeat_LeverDown;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TrainCabinSeat".
+    /// </summary>
+    public struct TrainCabinSeatActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TrainCabinSeatActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_TrainCabinSeat_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_TrainCabinSeat_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/Flashlight".
+        /// </summary>
+        public InputAction @Flashlight => m_Wrapper.m_TrainCabinSeat_Flashlight;
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/StandUp".
+        /// </summary>
+        public InputAction @StandUp => m_Wrapper.m_TrainCabinSeat_StandUp;
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/LeverUp".
+        /// </summary>
+        public InputAction @LeverUp => m_Wrapper.m_TrainCabinSeat_LeverUp;
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/LeverDown".
+        /// </summary>
+        public InputAction @LeverDown => m_Wrapper.m_TrainCabinSeat_LeverDown;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TrainCabinSeat; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TrainCabinSeatActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TrainCabinSeatActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TrainCabinSeatActions" />
+        public void AddCallbacks(ITrainCabinSeatActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TrainCabinSeatActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TrainCabinSeatActionsCallbackInterfaces.Add(instance);
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Flashlight.started += instance.OnFlashlight;
+            @Flashlight.performed += instance.OnFlashlight;
+            @Flashlight.canceled += instance.OnFlashlight;
+            @StandUp.started += instance.OnStandUp;
+            @StandUp.performed += instance.OnStandUp;
+            @StandUp.canceled += instance.OnStandUp;
+            @LeverUp.started += instance.OnLeverUp;
+            @LeverUp.performed += instance.OnLeverUp;
+            @LeverUp.canceled += instance.OnLeverUp;
+            @LeverDown.started += instance.OnLeverDown;
+            @LeverDown.performed += instance.OnLeverDown;
+            @LeverDown.canceled += instance.OnLeverDown;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TrainCabinSeatActions" />
+        private void UnregisterCallbacks(ITrainCabinSeatActions instance)
+        {
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Flashlight.started -= instance.OnFlashlight;
+            @Flashlight.performed -= instance.OnFlashlight;
+            @Flashlight.canceled -= instance.OnFlashlight;
+            @StandUp.started -= instance.OnStandUp;
+            @StandUp.performed -= instance.OnStandUp;
+            @StandUp.canceled -= instance.OnStandUp;
+            @LeverUp.started -= instance.OnLeverUp;
+            @LeverUp.performed -= instance.OnLeverUp;
+            @LeverUp.canceled -= instance.OnLeverUp;
+            @LeverDown.started -= instance.OnLeverDown;
+            @LeverDown.performed -= instance.OnLeverDown;
+            @LeverDown.canceled -= instance.OnLeverDown;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TrainCabinSeatActions.UnregisterCallbacks(ITrainCabinSeatActions)" />.
+        /// </summary>
+        /// <seealso cref="TrainCabinSeatActions.UnregisterCallbacks(ITrainCabinSeatActions)" />
+        public void RemoveCallbacks(ITrainCabinSeatActions instance)
+        {
+            if (m_Wrapper.m_TrainCabinSeatActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TrainCabinSeatActions.AddCallbacks(ITrainCabinSeatActions)" />
+        /// <seealso cref="TrainCabinSeatActions.RemoveCallbacks(ITrainCabinSeatActions)" />
+        /// <seealso cref="TrainCabinSeatActions.UnregisterCallbacks(ITrainCabinSeatActions)" />
+        public void SetCallbacks(ITrainCabinSeatActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TrainCabinSeatActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TrainCabinSeatActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TrainCabinSeatActions" /> instance referencing this action map.
+    /// </summary>
+    public TrainCabinSeatActions @TrainCabinSeat => new TrainCabinSeatActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -585,5 +1097,91 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Seat" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SeatActions.AddCallbacks(ISeatActions)" />
+    /// <seealso cref="SeatActions.RemoveCallbacks(ISeatActions)" />
+    public interface ISeatActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Flashlight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFlashlight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "StandUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnStandUp(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TrainCabinSeat" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TrainCabinSeatActions.AddCallbacks(ITrainCabinSeatActions)" />
+    /// <seealso cref="TrainCabinSeatActions.RemoveCallbacks(ITrainCabinSeatActions)" />
+    public interface ITrainCabinSeatActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Flashlight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFlashlight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "StandUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnStandUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LeverUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeverUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LeverDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeverDown(InputAction.CallbackContext context);
     }
 }

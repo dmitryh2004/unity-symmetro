@@ -804,7 +804,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &380489155428735057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1026,7 @@ GameObject:
   - component: {fileID: 6441114390184606399}
   - component: {fileID: 5112338055543200634}
   m_Layer: 0
-  m_Name: manometer magistral arrow 2
+  m_Name: manometer brake magistral arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,13 +1040,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487754913257567715}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3804613, y: 0.62282115, z: 0.6211176, w: 0.28558}
-  m_LocalPosition: {x: 0.24882177, y: 2.1247177, z: 9.094707}
-  m_LocalScale: {x: 99.999985, y: 100, z: 99.99999}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
+  m_LocalPosition: {x: 0, y: -0.00018576966, z: 0}
+  m_LocalScale: {x: 99.999985, y: 99.999985, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 141639282994075768}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 3468446196948198280}
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!33 &6441114390184606399
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1577,7 +1576,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &741442830243824174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,9 +1709,8 @@ Transform:
   - {fileID: 8313973517732815524}
   - {fileID: 2723486061414953239}
   - {fileID: 6792386328598864970}
-  - {fileID: 4009782710280146129}
-  - {fileID: 3797845570868989881}
-  - {fileID: 6870597655466853854}
+  - {fileID: 1587858836801811716}
+  - {fileID: 3468446196948198280}
   - {fileID: 5264823012874038156}
   - {fileID: 7278596362010176860}
   - {fileID: 8407882754222553970}
@@ -1850,8 +1847,8 @@ ConfigurableJoint:
   serializedVersion: 4
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 9.65, y: 0.8, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Anchor: {x: 0, y: 0.8, z: -9.65}
+  m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
@@ -2151,7 +2148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &861731315317112072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3611,13 +3607,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921193591023746454}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000061844254, y: 0.5735765, z: 0.819152, w: 0.000000043303817}
-  m_LocalPosition: {x: 0.40894976, y: 2.1246543, z: 9.094881}
-  m_LocalScale: {x: 100, y: 99.99999, z: 99.99999}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 99.999985, z: 99.99998}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 141639282994075768}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 1587858836801811716}
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!33 &1958153008339897980
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4463,7 +4459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &2185180239068628800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5781,7 +5776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &3068115228872522015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5992,7 +5986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &3153532030972331323
 GameObject:
   m_ObjectHideFlags: 0
@@ -6410,6 +6403,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05, y: 0.63, z: 1.95}
   m_Center: {x: 0, y: -0.315, z: 0}
+--- !u!1 &3724068742541576906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3468446196948198280}
+  m_Layer: 0
+  m_Name: Manometer magistral arrows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3468446196948198280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724068742541576906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.571788, z: 0.82040143, w: 0}
+  m_LocalPosition: {x: 0.2488218, y: 2.124654, z: 9.094881}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3797845570868989881}
+  - {fileID: 6870597655466853854}
+  m_Father: {fileID: 141639282994075768}
+  m_LocalEulerAnglesHint: {x: -69.75, y: 0, z: 180}
 --- !u!1 &3742371335496088265
 GameObject:
   m_ObjectHideFlags: 0
@@ -6422,7 +6448,7 @@ GameObject:
   - component: {fileID: 977178876809757575}
   - component: {fileID: 6964165090577136936}
   m_Layer: 0
-  m_Name: manometer magistral arrow 1
+  m_Name: manometer napor magistral arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6436,13 +6462,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3742371335496088265}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.5735764, z: 0.8191521, w: 0}
-  m_LocalPosition: {x: 0.24882177, y: 2.1246543, z: 9.094881}
-  m_LocalScale: {x: 100, y: 99.99999, z: 99.99999}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 141639282994075768}
-  m_LocalEulerAnglesHint: {x: -70, y: 0, z: 180}
+  m_Father: {fileID: 3468446196948198280}
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!33 &977178876809757575
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6731,7 +6757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &3906494266999813308
 GameObject:
   m_ObjectHideFlags: 0
@@ -6940,7 +6965,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &4062220452176997455
 GameObject:
   m_ObjectHideFlags: 0
@@ -7519,7 +7543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &4307780149349698815
 GameObject:
   m_ObjectHideFlags: 0
@@ -9303,7 +9326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &4992311333120892816
 GameObject:
   m_ObjectHideFlags: 0
@@ -9457,7 +9479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &5049472247575906063
 GameObject:
   m_ObjectHideFlags: 0
@@ -10703,7 +10724,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &5694048137957003268
 GameObject:
   m_ObjectHideFlags: 0
@@ -11254,7 +11274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &6118503834820979775
 GameObject:
   m_ObjectHideFlags: 0
@@ -11474,7 +11493,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &6324775263122219468
 GameObject:
   m_ObjectHideFlags: 0
@@ -12626,6 +12644,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headTrainModel: {fileID: 5875200053455845017}
+--- !u!1 &6981196113519952290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587858836801811716}
+  m_Layer: 0
+  m_Name: Manometer cylinder arrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1587858836801811716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981196113519952290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.571788, z: 0.82040143, w: 0}
+  m_LocalPosition: {x: 0.4089498, y: 2.124654, z: 9.094881}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4009782710280146129}
+  m_Father: {fileID: 141639282994075768}
+  m_LocalEulerAnglesHint: {x: -69.75, y: 0, z: 180}
 --- !u!1 &6998519227471099382
 GameObject:
   m_ObjectHideFlags: 0
@@ -13850,7 +13900,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &7595506077943939273
 GameObject:
   m_ObjectHideFlags: 0
@@ -14737,7 +14786,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &7920475038137195903
 GameObject:
   m_ObjectHideFlags: 0
@@ -15243,7 +15291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &8268085712615818305
 GameObject:
   m_ObjectHideFlags: 0
@@ -15344,7 +15391,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &8321450087964316743
 GameObject:
   m_ObjectHideFlags: 0
@@ -16552,7 +16598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
-  _light: {fileID: 0}
 --- !u!1 &9063620944414848722
 GameObject:
   m_ObjectHideFlags: 0

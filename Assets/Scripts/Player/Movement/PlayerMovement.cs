@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, SeatableEntity
 {
     public float moveSpeed = 5f;
     public float crouchSpeed = 2f;
@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumpPressed;
     private bool isGrounded;
     private bool isSeated = false;
+    private TrainSeat currentSeat = null;
 
     private PlayerControls controls;
     // PlayerInventoryController inventoryController;
@@ -164,4 +165,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Seat(TrainSeat seat)
+    {
+        isSeated = true;
+        currentSeat = seat;
+    }
+
+    public void LaunchStandUp()
+    {
+        if (currentSeat != null) currentSeat.StandUpEntity(this);
+    }
+
+    public void StandUp()
+    {
+        isSeated = false;
+        currentSeat = null;
+    }
 }
