@@ -120,10 +120,24 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
         if (effectivelyCrouching) currentSpeed = crouchSpeed;
 
         // 3. Плавное изменение высоты на основе effectivelyCrouching
-        float targetHeight = effectivelyCrouching ? crouchHeight : standHeight;
+        float targetHeight = (effectivelyCrouching || isSeated) ? crouchHeight : standHeight;
         currentHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * heightChangeSpeed);
 
-        transform.localScale = new Vector3(transform.localScale.x, currentHeight / standHeight * standScale, transform.localScale.z);
+        // Вычисляем, какой МИРОВОЙ масштаб по Y должен быть у игрока прямо сейчас
+        float targetWorldScaleY = (currentHeight / standHeight) * standScale;
+
+        // По умолчанию локальный масштаб равен мировому (если родителя нет)
+        float localScaleY = targetWorldScaleY;
+
+        // Если у игрока есть родитель, делим целевой мировой масштаб на масштаб родителя по оси Y
+        if (transform.parent != null)
+        {
+            // lossyScale.y возвращает суммарный мировой масштаб всей родительской цепочки по оси Y
+            localScaleY = targetWorldScaleY / transform.parent.lossyScale.y;
+        }
+
+        // Применяем скорректированный локальный масштаб
+        transform.localScale = new Vector3(transform.localScale.x, localScaleY, transform.localScale.z);
 
         isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundMask);
     }
@@ -169,10 +183,15 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
     {
         isSeated = true;
         currentSeat = seat;
+
+        bool isDriverChair = seat.gameObject.CompareTag("TrainDriverChair");
+        InputActionMapSwitcher.Instance.SwitchMap(isDriverChair ? "TrainCabinSeat" : "Seat");
+        rb.Sleep();
     }
 
-    public void LaunchStandUp()
+    public void LaunchStandUp(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         if (currentSeat != null) currentSeat.StandUpEntity(this);
     }
 
@@ -180,5 +199,10 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
     {
         isSeated = false;
         currentSeat = null;
+        InputActionMapSwitcher.Instance.SwitchMap("Movement");
+        rb.WakeUp();
     }
+
+    public Transform GetTransform() => transform;
+    public GameObject GetGameObject() => gameObject;
 }

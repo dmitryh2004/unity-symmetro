@@ -187,6 +187,7 @@ MonoBehaviour:
   lightComponent: {fileID: 8975849018698253453}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &196236645123332589
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +785,7 @@ MonoBehaviour:
   lightComponent: {fileID: 167204225317851547}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &469167977931366870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,6 +2121,7 @@ MonoBehaviour:
   lightComponent: {fileID: 2746146996809014569}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &2692779569713260959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,6 +2787,7 @@ MonoBehaviour:
   lightComponent: {fileID: 7990790921648061850}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &3610849157007868172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,6 +3171,7 @@ MonoBehaviour:
   lightComponent: {fileID: 4416526493109116786}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &4036189743404665621
 GameObject:
   m_ObjectHideFlags: 0
@@ -3637,6 +3642,7 @@ MonoBehaviour:
   lightComponent: {fileID: 730382314964757482}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &4637420664189035223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,6 +3781,7 @@ MonoBehaviour:
   lightComponent: {fileID: 1635196112721078184}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &4681001839679147426
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4335,7 @@ MonoBehaviour:
   lightComponent: {fileID: 1485285176247893800}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &5591587792085457874
 GameObject:
   m_ObjectHideFlags: 0
@@ -4788,6 +4796,7 @@ MonoBehaviour:
   lightComponent: {fileID: 1075340290574656551}
   range: 25
   updatePeriod: 0.5
+  shouldBeEnabled: 0
 --- !u!1 &6119515802465315474
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,22 +5,24 @@ public interface SeatableEntity
 {
     void Seat(TrainSeat seat);
     void StandUp();
+    Transform GetTransform();
+    GameObject GetGameObject();
 }
 
 /// <summary>
-/// Компонент, описывающий предмет, на котором могут сидеть игроки/NPC.
+/// РљРѕРјРїРѕРЅРµРЅС‚, РѕРїРёСЃС‹РІР°СЋС‰РёР№ РїСЂРµРґРјРµС‚, РЅР° РєРѕС‚РѕСЂРѕРј РјРѕРіСѓС‚ СЃРёРґРµС‚СЊ РёРіСЂРѕРєРё/NPC.
 /// </summary>
 public class TrainSeat : MonoBehaviour
 {
     [Header("Seats")]
-    [Tooltip("Позиции мест для сидения (в локальных координатах объекта).")]
+    [Tooltip("РџРѕР·РёС†РёРё РјРµСЃС‚ РґР»СЏ СЃРёРґРµРЅРёСЏ (РІ Р»РѕРєР°Р»СЊРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… РѕР±СЉРµРєС‚Р°).")]
     public Vector3[] seatPositions;
 
     [Header("Debug / Runtime")]
-    [Tooltip("Занятость мест: true — занято, false — свободно.")]
+    [Tooltip("Р—Р°РЅСЏС‚РѕСЃС‚СЊ РјРµСЃС‚: true вЂ” Р·Р°РЅСЏС‚Рѕ, false вЂ” СЃРІРѕР±РѕРґРЅРѕ.")]
     public bool[] seatOccupied;
 
-    // Сущности, сидящие на местах (по индексу места)
+    // РЎСѓС‰РЅРѕСЃС‚Рё, СЃРёРґСЏС‰РёРµ РЅР° РјРµСЃС‚Р°С… (РїРѕ РёРЅРґРµРєСЃСѓ РјРµСЃС‚Р°)
     private SeatableEntity[] seatedEntities;
 
     private void Awake()
@@ -28,7 +30,7 @@ public class TrainSeat : MonoBehaviour
         if (seatPositions == null)
             seatPositions = Array.Empty<Vector3>();
 
-        // Инициализируем массивы занятости и сущностей по количеству мест.
+        // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РјР°СЃСЃРёРІС‹ Р·Р°РЅСЏС‚РѕСЃС‚Рё Рё СЃСѓС‰РЅРѕСЃС‚РµР№ РїРѕ РєРѕР»РёС‡РµСЃС‚РІСѓ РјРµСЃС‚.
         int seatCount = seatPositions.Length;
         seatOccupied = new bool[seatCount];
         seatedEntities = new SeatableEntity[seatCount];
@@ -43,7 +45,7 @@ public class TrainSeat : MonoBehaviour
     #region Public API
 
     /// <summary>
-    /// Сидит ли на этом предмете хотя бы один игрок/NPC.
+    /// РЎРёРґРёС‚ Р»Рё РЅР° СЌС‚РѕРј РїСЂРµРґРјРµС‚Рµ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ РёРіСЂРѕРє/NPC.
     /// </summary>
     public bool IsSeated()
     {
@@ -56,7 +58,7 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Свободно ли хотя бы одно место.
+    /// РЎРІРѕР±РѕРґРЅРѕ Р»Рё С…РѕС‚СЏ Р±С‹ РѕРґРЅРѕ РјРµСЃС‚Рѕ.
     /// </summary>
     public bool HasAvailableSeats()
     {
@@ -69,7 +71,7 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Свободно ли конкретное место (по индексу).
+    /// РЎРІРѕР±РѕРґРЅРѕ Р»Рё РєРѕРЅРєСЂРµС‚РЅРѕРµ РјРµСЃС‚Рѕ (РїРѕ РёРЅРґРµРєСЃСѓ).
     /// </summary>
     public bool IsSeatAvailable(int seatIndex)
     {
@@ -80,8 +82,8 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить сущность, сидящую на конкретном месте.
-    /// Возвращает null, если место свободно или индекс невалиден.
+    /// РџРѕР»СѓС‡РёС‚СЊ СЃСѓС‰РЅРѕСЃС‚СЊ, СЃРёРґСЏС‰СѓСЋ РЅР° РєРѕРЅРєСЂРµС‚РЅРѕРј РјРµСЃС‚Рµ.
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ null, РµСЃР»Рё РјРµСЃС‚Рѕ СЃРІРѕР±РѕРґРЅРѕ РёР»Рё РёРЅРґРµРєСЃ РЅРµРІР°Р»РёРґРµРЅ.
     /// </summary>
     public SeatableEntity GetSittingEntity(int seatIndex)
     {
@@ -92,8 +94,8 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Посадить игрока/NPC на конкретное место.
-    /// Возвращает true, если посадка успешна, иначе false.
+    /// РџРѕСЃР°РґРёС‚СЊ РёРіСЂРѕРєР°/NPC РЅР° РєРѕРЅРєСЂРµС‚РЅРѕРµ РјРµСЃС‚Рѕ.
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РїРѕСЃР°РґРєР° СѓСЃРїРµС€РЅР°, РёРЅР°С‡Рµ false.
     /// </summary>
     public bool SitDown(int seatIndex, SeatableEntity entity)
     {
@@ -104,22 +106,31 @@ public class TrainSeat : MonoBehaviour
             return false;
 
         if (seatOccupied[seatIndex])
-            return false; // Место уже занято.
+            return false; // РњРµСЃС‚Рѕ СѓР¶Рµ Р·Р°РЅСЏС‚Рѕ.
 
         seatOccupied[seatIndex] = true;
         seatedEntities[seatIndex] = entity;
 
-        // Здесь можно добавить логику:
-        // - перемещение entity.transform.position в точку сидения;
-        // - поворот;
-        // - установку состояния "сидит" в компоненте сущности.
+        // Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ Р»РѕРіРёРєСѓ:
+        // - РїРµСЂРµРјРµС‰РµРЅРёРµ entity.transform.position РІ С‚РѕС‡РєСѓ СЃРёРґРµРЅРёСЏ;
+        // - РїРѕРІРѕСЂРѕС‚;
+        // - СѓСЃС‚Р°РЅРѕРІРєСѓ СЃРѕСЃС‚РѕСЏРЅРёСЏ "СЃРёРґРёС‚" РІ РєРѕРјРїРѕРЅРµРЅС‚Рµ СЃСѓС‰РЅРѕСЃС‚Рё.
+        entity.GetTransform().SetParent(transform);
+
+        // Р’С‹С‡РёСЃР»СЏРµРј РїСЂР°РІРёР»СЊРЅСѓСЋ РјРёСЂРѕРІСѓСЋ РїРѕР·РёС†РёСЋ СЃС‚СѓР»Р° СЃ СѓС‡РµС‚РѕРј РјР°СЃС€С‚Р°Р±Р° 100
+        Vector3 worldSeatPos = transform.TransformPoint(seatPositions[seatIndex]);
+
+        // РџРµСЂРµРјРµС‰Р°РµРј РїРµСЂСЃРѕРЅР°Р¶Р° РїРѕ РјРёСЂРѕРІС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј
+        entity.GetTransform().position = worldSeatPos;
+
+        entity.Seat(this);
 
         return true;
     }
 
     /// <summary>
-    /// Высадить игрока/NPC с конкретного места.
-    /// Возвращает true, если высадка успешна, иначе false.
+    /// Р’С‹СЃР°РґРёС‚СЊ РёРіСЂРѕРєР°/NPC СЃ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ РјРµСЃС‚Р°.
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё РІС‹СЃР°РґРєР° СѓСЃРїРµС€РЅР°, РёРЅР°С‡Рµ false.
     /// </summary>
     public bool StandUp(int seatIndex)
     {
@@ -127,11 +138,15 @@ public class TrainSeat : MonoBehaviour
             return false;
 
         if (!seatOccupied[seatIndex])
-            return false; // Место и так свободно.
+            return false; // РњРµСЃС‚Рѕ Рё С‚Р°Рє СЃРІРѕР±РѕРґРЅРѕ.
 
-        // При необходимости можно выполнить дополнительную логику:
-        // - сброс состояния "сидит" у сущности;
-        // - смещение позиции и т.п.
+        // РџСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ Р»РѕРіРёРєСѓ:
+        // - СЃР±СЂРѕСЃ СЃРѕСЃС‚РѕСЏРЅРёСЏ "СЃРёРґРёС‚" Сѓ СЃСѓС‰РЅРѕСЃС‚Рё;
+        // - СЃРјРµС‰РµРЅРёРµ РїРѕР·РёС†РёРё Рё С‚.Рї.
+
+        SeatableEntity entity = GetSittingEntity(seatIndex);
+        entity.GetTransform().SetParent(null);
+        entity.StandUp();
 
         seatOccupied[seatIndex] = false;
         seatedEntities[seatIndex] = null;
@@ -140,8 +155,8 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Высадить конкретную сущность, где бы она ни сидела.
-    /// Возвращает true, если сущность была найдена и высажена.
+    /// Р’С‹СЃР°РґРёС‚СЊ РєРѕРЅРєСЂРµС‚РЅСѓСЋ СЃСѓС‰РЅРѕСЃС‚СЊ, РіРґРµ Р±С‹ РѕРЅР° РЅРё СЃРёРґРµР»Р°.
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ true, РµСЃР»Рё СЃСѓС‰РЅРѕСЃС‚СЊ Р±С‹Р»Р° РЅР°Р№РґРµРЅР° Рё РІС‹СЃР°Р¶РµРЅР°.
     /// </summary>
     public bool StandUpEntity(SeatableEntity entity)
     {
@@ -159,8 +174,8 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Найти первое свободное место.
-    /// Возвращает индекс места или -1, если свободных мест нет.
+    /// РќР°Р№С‚Рё РїРµСЂРІРѕРµ СЃРІРѕР±РѕРґРЅРѕРµ РјРµСЃС‚Рѕ.
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ РјРµСЃС‚Р° РёР»Рё -1, РµСЃР»Рё СЃРІРѕР±РѕРґРЅС‹С… РјРµСЃС‚ РЅРµС‚.
     /// </summary>
     public int FindFirstFreeSeat()
     {
@@ -173,7 +188,7 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить мировую позицию конкретного места.
+    /// РџРѕР»СѓС‡РёС‚СЊ РјРёСЂРѕРІСѓСЋ РїРѕР·РёС†РёСЋ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ РјРµСЃС‚Р°.
     /// </summary>
     public Vector3 GetSeatWorldPosition(int seatIndex)
     {
@@ -184,7 +199,7 @@ public class TrainSeat : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить локальную позицию конкретного места.
+    /// РџРѕР»СѓС‡РёС‚СЊ Р»РѕРєР°Р»СЊРЅСѓСЋ РїРѕР·РёС†РёСЋ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ РјРµСЃС‚Р°.
     /// </summary>
     public Vector3 GetSeatLocalPosition(int seatIndex)
     {
@@ -203,7 +218,7 @@ public class TrainSeat : MonoBehaviour
         return index >= 0 && index < seatPositions.Length;
     }
 
-    // Опционально: отрисовка точек сидения в редакторе / gizmos для удобства.
+    // РћРїС†РёРѕРЅР°Р»СЊРЅРѕ: РѕС‚СЂРёСЃРѕРІРєР° С‚РѕС‡РµРє СЃРёРґРµРЅРёСЏ РІ СЂРµРґР°РєС‚РѕСЂРµ / gizmos РґР»СЏ СѓРґРѕР±СЃС‚РІР°.
     private void OnDrawGizmos()
     {
         if (seatPositions == null)

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - ColoredButton
+  - TrainDriverChair
   layers:
   - Default
   - TransparentFX
