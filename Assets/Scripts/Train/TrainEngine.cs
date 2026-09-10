@@ -7,9 +7,11 @@ public class TrainEngine : MonoBehaviour
     int acceleration = 0; // from 1 to 4 - accelerate, from -4 to -1 - break
     [SerializeField] float minSpeed = 0f, maxSpeed = 20f;
 
+    [SerializeField] HeadTrainModel headTrainModel;
     [SerializeField] Rigidbody rb;
 
     [SerializeField] private float power;
+    [SerializeField] private Animator stickAnim;
 
     PlayerControls controls;
     
@@ -41,18 +43,18 @@ public class TrainEngine : MonoBehaviour
         Throttle(power);
     }
 
-    public void SpeedUp(InputAction.CallbackContext context)
+    public void SpeedUp()
     {
-        if (!context.performed) return;
         acceleration += 1;
         if (acceleration > 4) acceleration = 4;
+        if (stickAnim != null) stickAnim.SetInteger("acceleration", acceleration);
     }
 
-    public void SpeedDown(InputAction.CallbackContext context)
+    public void SpeedDown()
     {
-        if (!context.performed) return;
         acceleration -= 1;
         if (acceleration < -4) acceleration = -4;
+        if (stickAnim != null) stickAnim.SetInteger("acceleration", acceleration);
     }
 
     private void Throttle(float power)
@@ -61,15 +63,15 @@ public class TrainEngine : MonoBehaviour
         Vector3 dir = factor * power * transform.forward;
         rb.AddForce(dir);
 
-        float speed = rb.linearVelocity.magnitude * (Vector3.Dot(transform.forward, rb.linearVelocity) < 0 ? -1 : 1);
+        float speed = headTrainModel.GetCurrentSpeed() * (Vector3.Dot(transform.forward, headTrainModel.GetCurrentSpeedVector()) < 0 ? -1 : 1);
 
         if (speed < minSpeed)
         {
-            rb.linearVelocity = dir * minSpeed;
+            headTrainModel.SetCurrentSpeedVector(dir * minSpeed);
         }
         if (speed > maxSpeed)
         {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            headTrainModel.SetCurrentSpeedVector(headTrainModel.GetCurrentSpeedVector().normalized * maxSpeed);
         }
     }
 }

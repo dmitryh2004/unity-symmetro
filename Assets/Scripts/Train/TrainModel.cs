@@ -23,6 +23,8 @@ public class TrainModel : MonoBehaviour
 
     [SerializeField] private bool braking = true;
     private float brakingDeceleration = 1.8f;
+    private float currentSpeedMagnitude = 0f;
+    private Vector3 currentSpeed = Vector3.zero;
 
     [Header("Indication lamps")]
     [SerializeField] private TrainIndicationLampController brakeLamp;
@@ -151,7 +153,17 @@ public class TrainModel : MonoBehaviour
 
     public float GetCurrentSpeed()
     {
-        return rb.linearVelocity.magnitude;
+        return currentSpeedMagnitude;
+    }
+
+    public void SetCurrentSpeed(float newSpeed) {
+        currentSpeedMagnitude = newSpeed;
+    }
+
+    public Vector3 GetCurrentSpeedVector() => currentSpeed;
+
+    public void SetCurrentSpeedVector(Vector3 newVector) {
+        currentSpeed = newVector;
     }
 
     public bool RegularLampsOn() => regularLampsOn;
@@ -208,14 +220,14 @@ public class TrainModel : MonoBehaviour
 
         if (braking)
         {
-            Vector3 newVelocity = rb.linearVelocity;
+            Vector3 newVelocity = currentSpeed * currentSpeedMagnitude;
             float newSpeed = Mathf.Clamp(newVelocity.magnitude - brakingDeceleration * Time.fixedDeltaTime, 0f, 25f);
 
-            newVelocity = newVelocity.normalized * newSpeed;
-            rb.linearVelocity = newVelocity;
+            currentSpeed = newVelocity.normalized;
+            currentSpeedMagnitude = newSpeed;
         }
 
         if (this is HeadTrainModel htm && htm.IsActive())
-            rb.linearVelocity = rb.linearVelocity.magnitude * engineForward;
+            currentSpeed = currentSpeedMagnitude * engineForward;
     }
 }

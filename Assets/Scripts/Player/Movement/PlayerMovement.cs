@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
     private bool isGrounded;
     private bool isSeated = false;
     private TrainSeat currentSeat = null;
+    private TrainEngine currentTrainEngine = null;
 
     private PlayerControls controls;
     // PlayerInventoryController inventoryController;
@@ -82,6 +83,26 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
     {
         isSeated = seated;
     }
+
+    public void SetTrainEngine(TrainEngine trainEngine) {
+        currentTrainEngine = trainEngine;
+    }
+
+    public void TrainEngineIncrease(InputAction.CallbackContext context) {
+        if (!context.performed) return;
+        if (currentTrainEngine != null) {
+            currentTrainEngine.SpeedUp();
+        }
+    }
+
+    public void TrainEngineDecrease(InputAction.CallbackContext context) {
+        if (!context.performed) return;
+        if (currentTrainEngine != null) {
+            currentTrainEngine.SpeedDown();
+        }
+    }
+
+    public void ClearTrainEngine() => currentTrainEngine = null;
 
     private void Update()
     {

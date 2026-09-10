@@ -124,8 +124,13 @@ public class TrainSeat : MonoBehaviour
         entity.GetTransform().position = worldSeatPos;
 
         entity.Seat(this);
+        OnSatDown(entity);
 
         return true;
+    }
+
+    protected virtual void OnSatDown(SeatableEntity entity) {
+        
     }
 
     /// <summary>
@@ -147,11 +152,16 @@ public class TrainSeat : MonoBehaviour
         SeatableEntity entity = GetSittingEntity(seatIndex);
         entity.GetTransform().SetParent(null);
         entity.StandUp();
+        OnStoodUp(entity);
 
         seatOccupied[seatIndex] = false;
         seatedEntities[seatIndex] = null;
 
         return true;
+    }
+
+    protected virtual void OnStoodUp(SeatableEntity entity) {
+
     }
 
     /// <summary>

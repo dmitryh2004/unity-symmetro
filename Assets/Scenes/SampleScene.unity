@@ -10456,11 +10456,35 @@ MonoBehaviour:
     m_ActionId: 004a8018-0f0f-4e5e-b8c1-106410f06c90
     m_ActionName: 'TrainCabinSeat/StandUp[/Keyboard/leftShift]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 322918903}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: TrainEngineIncrease
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6ce31e84-baa4-46ee-9986-56be0cb4a805
     m_ActionName: 'TrainCabinSeat/LeverUp[/Keyboard/w]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 322918903}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: TrainEngineDecrease
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0b644556-7866-4b07-b5e9-6980344e5f69
     m_ActionName: 'TrainCabinSeat/LeverDown[/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0

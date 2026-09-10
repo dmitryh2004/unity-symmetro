@@ -5710,7 +5710,7 @@ MonoBehaviour:
   trainNumberRight: {fileID: 2873197073291888422}
   rail: {fileID: 0}
   invertRotation: 0
-  braking: 1
+  braking: 0
   brakeLamp: {fileID: 6681458206456602942}
   doorLamp: {fileID: 8510334540097944082}
   alarmLampController: {fileID: 2459219941988969089}

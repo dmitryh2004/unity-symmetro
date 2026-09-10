@@ -1777,7 +1777,7 @@ MonoBehaviour:
   trainNumberRight: {fileID: 6486761106147124378}
   rail: {fileID: 0}
   invertRotation: 0
-  braking: 1
+  braking: 0
   brakeLamp: {fileID: 7394878616432415911}
   doorLamp: {fileID: 1111950745004341594}
   alarmLampController: {fileID: 1539706735466282519}
@@ -1835,8 +1835,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 0
   maxSpeed: 20
+  headTrainModel: {fileID: 5875200053455845017}
   rb: {fileID: 7147831773650948378}
   power: 1000
+  stickAnim: {fileID: 6775220985465919041}
 --- !u!153 &3851212396637719591
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -8165,7 +8167,7 @@ GameObject:
   - component: {fileID: 2188661109590026601}
   - component: {fileID: 2129722964022234824}
   - component: {fileID: 1915039264598058184}
-  - component: {fileID: 1492508226570281301}
+  - component: {fileID: 1645085756097566735}
   - component: {fileID: 2427149442327724411}
   m_Layer: 0
   m_Name: train chair
@@ -8243,7 +8245,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1492508226570281301
+--- !u!114 &1645085756097566735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8252,12 +8254,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4575427765219241987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 832d416ee3986824a81dbff3eafe1a88, type: 3}
+  m_Script: {fileID: 11500000, guid: acee35e5b6f2d7e4aad0eb3923dd4c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   seatPositions:
   - {x: 0, y: 0.002, z: 0.00528}
   seatOccupied: 
+  trainEngine: {fileID: 8627654366393080024}
 --- !u!65 &2427149442327724411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9162,7 +9165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   seatIndex: 0
-  seatObject: {fileID: 1492508226570281301}
+  seatObject: {fileID: 1645085756097566735}
 --- !u!65 &2379705491509192553
 BoxCollider:
   m_ObjectHideFlags: 0
