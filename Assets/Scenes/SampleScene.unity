@@ -2611,6 +2611,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
       value: 
       objectReference: {fileID: 6364197171416885331}
@@ -4597,6 +4601,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
       value: 
       objectReference: {fileID: 6364197171416885331}
@@ -6387,6 +6395,10 @@ PrefabInstance:
       propertyPath: rail
       value: 
       objectReference: {fileID: 1995385650}
+    - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
       value: 
@@ -10487,6 +10499,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0b644556-7866-4b07-b5e9-6980344e5f69
     m_ActionName: 'TrainCabinSeat/LeverDown[/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 322918903}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ChangeTrainBraking
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1adc452c-cef7-432c-a4e9-098948f576de
+    m_ActionName: 'TrainCabinSeat/Brake[/Keyboard/b]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -15079,6 +15107,10 @@ PrefabInstance:
       propertyPath: rail
       value: 
       objectReference: {fileID: 1995385650}
+    - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
       value: 
@@ -20251,6 +20283,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
       value: 
       objectReference: {fileID: 6364197171416885331}
@@ -20364,6 +20400,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 082678ebd1613fe438cafc79ae4d0611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &638049158 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+  m_PrefabInstance: {fileID: 191348671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205fc83ac843d24c861087cae0a0c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &639161895
@@ -29632,6 +29679,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7672354492791091507, guid: 472494fb8087c8542b81c1f08f4dc7db, type: 3}
   m_PrefabInstance: {fileID: 963480345}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &965914054 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+  m_PrefabInstance: {fileID: 634183066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205fc83ac843d24c861087cae0a0c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &966098395
 GameObject:
   m_ObjectHideFlags: 0
@@ -30193,6 +30251,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 082678ebd1613fe438cafc79ae4d0611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &973469757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+  m_PrefabInstance: {fileID: 217079619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205fc83ac843d24c861087cae0a0c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &974398042
@@ -49081,6 +49150,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1995385650}
     - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: headVagon
       value: 
       objectReference: {fileID: 6364197171416885331}
@@ -49096,6 +49169,42 @@ PrefabInstance:
       propertyPath: invertRotation
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: chainedVagons.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6364197171416885331}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7700231603499299854}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1953307619}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[3]'
+      value: 
+      objectReference: {fileID: 638049158}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1674144717}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[5]'
+      value: 
+      objectReference: {fileID: 965914054}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[6]'
+      value: 
+      objectReference: {fileID: 973469757}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[7]'
+      value: 
+      objectReference: {fileID: 1650050614}
     - target: {fileID: 5940978522251884952, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: _enabled
       value: 1
@@ -49653,6 +49762,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 082678ebd1613fe438cafc79ae4d0611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1674144717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+  m_PrefabInstance: {fileID: 413840356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205fc83ac843d24c861087cae0a0c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1678377205
@@ -57441,6 +57561,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082678ebd1613fe438cafc79ae4d0611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1953307619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+  m_PrefabInstance: {fileID: 98821079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205fc83ac843d24c861087cae0a0c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1956120644
 GameObject:
   m_ObjectHideFlags: 0
@@ -62751,6 +62882,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1995385650}
     - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: headVagon
       value: 
       objectReference: {fileID: 6364197171416885331}
@@ -62762,6 +62897,42 @@ PrefabInstance:
       propertyPath: trainNumber
       value: 322
       objectReference: {fileID: 0}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: chainedVagons.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6364197171416885331}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7700231603499299854}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1953307619}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[3]'
+      value: 
+      objectReference: {fileID: 638049158}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1674144717}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[5]'
+      value: 
+      objectReference: {fileID: 965914054}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[6]'
+      value: 
+      objectReference: {fileID: 973469757}
+    - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
+      propertyPath: 'chainedVagons.Array.data[7]'
+      value: 
+      objectReference: {fileID: 1650050614}
     - target: {fileID: 5940978522251884952, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: _enabled
       value: 1
@@ -62939,6 +63110,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+      propertyPath: braking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
       value: 
       objectReference: {fileID: 6364197171416885331}
@@ -63017,6 +63192,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 082678ebd1613fe438cafc79ae4d0611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7700231603499299854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
+  m_PrefabInstance: {fileID: 7700231603499299849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205fc83ac843d24c861087cae0a0c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

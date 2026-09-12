@@ -14,6 +14,8 @@ public class HeadTrainModel : TrainModel
     [SerializeField] TrainLampController cabinLight;
     bool cabinLightEnabled = false;
 
+    [SerializeField] public List<TrainModel> chainedVagons = new();
+
     [Header("Head panel")]
     [SerializeField] SpeedController speedController;
 

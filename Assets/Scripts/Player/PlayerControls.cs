@@ -424,6 +424,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Brake"",
+                    ""type"": ""Button"",
+                    ""id"": ""1adc452c-cef7-432c-a4e9-098948f576de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -492,6 +501,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""LeverDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""989add69-490f-4edb-a0a2-3a3104362452"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -521,6 +541,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_TrainCabinSeat_StandUp = m_TrainCabinSeat.FindAction("StandUp", throwIfNotFound: true);
         m_TrainCabinSeat_LeverUp = m_TrainCabinSeat.FindAction("LeverUp", throwIfNotFound: true);
         m_TrainCabinSeat_LeverDown = m_TrainCabinSeat.FindAction("LeverDown", throwIfNotFound: true);
+        m_TrainCabinSeat_Brake = m_TrainCabinSeat.FindAction("Brake", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -900,6 +921,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_TrainCabinSeat_StandUp;
     private readonly InputAction m_TrainCabinSeat_LeverUp;
     private readonly InputAction m_TrainCabinSeat_LeverDown;
+    private readonly InputAction m_TrainCabinSeat_Brake;
     /// <summary>
     /// Provides access to input actions defined in input action map "TrainCabinSeat".
     /// </summary>
@@ -935,6 +957,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "TrainCabinSeat/LeverDown".
         /// </summary>
         public InputAction @LeverDown => m_Wrapper.m_TrainCabinSeat_LeverDown;
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/Brake".
+        /// </summary>
+        public InputAction @Brake => m_Wrapper.m_TrainCabinSeat_Brake;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -979,6 +1005,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LeverDown.started += instance.OnLeverDown;
             @LeverDown.performed += instance.OnLeverDown;
             @LeverDown.canceled += instance.OnLeverDown;
+            @Brake.started += instance.OnBrake;
+            @Brake.performed += instance.OnBrake;
+            @Brake.canceled += instance.OnBrake;
         }
 
         /// <summary>
@@ -1008,6 +1037,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LeverDown.started -= instance.OnLeverDown;
             @LeverDown.performed -= instance.OnLeverDown;
             @LeverDown.canceled -= instance.OnLeverDown;
+            @Brake.started -= instance.OnBrake;
+            @Brake.performed -= instance.OnBrake;
+            @Brake.canceled -= instance.OnBrake;
         }
 
         /// <summary>
@@ -1183,5 +1215,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeverDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Brake" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBrake(InputAction.CallbackContext context);
     }
 }

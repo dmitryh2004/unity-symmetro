@@ -3,11 +3,12 @@ using UnityEngine;
 public class TrainCabinSeat : TrainSeat
 {
     [SerializeField] TrainEngine trainEngine;
+    [SerializeField] HeadTrainController htc;
     protected override void OnSatDown(SeatableEntity entity)
     {
         base.OnSatDown(entity);
         if (entity is PlayerMovement player) {
-            player.SetTrainEngine(trainEngine);
+            player.SetTrainCabinLinks(trainEngine, htc);
         }
     }
 
@@ -15,7 +16,7 @@ public class TrainCabinSeat : TrainSeat
     {
         base.OnStoodUp(entity);
         if (entity is PlayerMovement player) {
-            player.ClearTrainEngine();
+            player.ClearTrainCabinLinks();
         }
     }
 }

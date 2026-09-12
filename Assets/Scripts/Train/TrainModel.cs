@@ -23,8 +23,9 @@ public class TrainModel : MonoBehaviour
 
     [SerializeField] private bool braking = true;
     private float brakingDeceleration = 1.8f;
-    private float currentSpeedMagnitude = 0f;
-    private Vector3 currentSpeed = Vector3.zero;
+    private float frictionDeceleration = 0.025f;
+    [SerializeField] private float currentSpeedMagnitude = 0f;
+    [SerializeField] private Vector3 currentSpeed = Vector3.zero;
 
     [Header("Indication lamps")]
     [SerializeField] private TrainIndicationLampController brakeLamp;
@@ -57,6 +58,8 @@ public class TrainModel : MonoBehaviour
 
     public bool IsBraking() => braking;
     public void SetBraking(bool b) => braking = b;
+
+    public bool IsInvertRotation() => invertRotation;
 
     private bool ShouldInvert()
     {
@@ -197,11 +200,17 @@ public class TrainModel : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // изменяем текущую скорость, учитывая трение и наклоны
+        SetCurrentSpeed(Mathf.Sign(currentSpeed.magnitude) * Mathf.Clamp(Mathf.Abs(currentSpeed.magnitude - frictionDeceleration * Time.fixedDeltaTime), 0f, 25f));
+        SetCurrentSpeedVector(GetCurrentSpeedVector().normalized * currentSpeedMagnitude);
+
+        // возвращаем вагон к ближайшей точке текущего сплайна с учетом его текущей скорости
         var native = new NativeSpline(currentSpline);
-        float distance = SplineUtility.GetNearestPoint(native, transform.position, out float3 nearest, out float t);
+        float distance = SplineUtility.GetNearestPoint(native, transform.position + currentSpeed * Time.fixedDeltaTime * (invertRotation ? -1 : 1), out float3 nearest, out float t);
 
         rb.MovePosition(nearest);
 
+        // поворачиваем вагон вдоль касательной к текущей точке сплайна
         Vector3 forward = Vector3.Normalize(native.EvaluateTangent(t)) * (invertRotation ? -1 : 1);
         Vector3 up = native.EvaluateUpVector(t);
 
@@ -213,21 +222,32 @@ public class TrainModel : MonoBehaviour
 
         Vector3 engineForward = transform.forward;
 
-        if (Vector3.Dot(rb.linearVelocity, transform.forward) < 0)
+        if (invertRotation)
         {
             engineForward *= -1;
         }
 
         if (braking)
         {
-            Vector3 newVelocity = currentSpeed * currentSpeedMagnitude;
-            float newSpeed = Mathf.Clamp(newVelocity.magnitude - brakingDeceleration * Time.fixedDeltaTime, 0f, 25f);
+            Vector3 newVelocity = currentSpeed;
+            float newSpeed = Mathf.Sign(newVelocity.magnitude) * Mathf.Clamp(Mathf.Abs(newVelocity.magnitude - brakingDeceleration * Time.fixedDeltaTime), 0f, 25f);
 
-            currentSpeed = newVelocity.normalized;
+            currentSpeed = newVelocity.normalized * newSpeed;
             currentSpeedMagnitude = newSpeed;
         }
 
         if (this is HeadTrainModel htm && htm.IsActive())
+        {
             currentSpeed = currentSpeedMagnitude * engineForward;
+            foreach (TrainModel vagon in htm.chainedVagons)
+            {
+                if (vagon != this)
+                {
+                    vagon.SetCurrentSpeed(currentSpeedMagnitude);
+                    Vector3 newSpeedVector = vagon.transform.forward * currentSpeedMagnitude;
+                    vagon.SetCurrentSpeedVector(newSpeedVector);
+                }
+            }
+        }
     }
 }

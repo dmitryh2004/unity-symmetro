@@ -6,30 +6,15 @@ public class TrainEngine : MonoBehaviour
     bool active = false;
     int acceleration = 0; // from 1 to 4 - accelerate, from -4 to -1 - break
     [SerializeField] float minSpeed = 0f, maxSpeed = 20f;
+    [SerializeField] float accelerationSpeed = 1.2f; // насколько разгоняется вагон при полном ускорении
 
     [SerializeField] HeadTrainModel headTrainModel;
     [SerializeField] Rigidbody rb;
 
     [SerializeField] private float power;
     [SerializeField] private Animator stickAnim;
-
-    PlayerControls controls;
     
     public void SetActive(bool active) => this.active = active;
-
-    private void Awake()
-    {
-        controls = new();
-    }
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
 
     private void Start()
     {
@@ -48,6 +33,7 @@ public class TrainEngine : MonoBehaviour
         acceleration += 1;
         if (acceleration > 4) acceleration = 4;
         if (stickAnim != null) stickAnim.SetInteger("acceleration", acceleration);
+        Debug.Log($"increased acceleration, now {acceleration}");
     }
 
     public void SpeedDown()
@@ -55,23 +41,19 @@ public class TrainEngine : MonoBehaviour
         acceleration -= 1;
         if (acceleration < -4) acceleration = -4;
         if (stickAnim != null) stickAnim.SetInteger("acceleration", acceleration);
+        Debug.Log($"decreased acceleration, now {acceleration}");
     }
 
     private void Throttle(float power)
     {
         float factor = acceleration / 4f;
-        Vector3 dir = factor * power * transform.forward;
-        rb.AddForce(dir);
+        float speedChange = factor * accelerationSpeed * Time.fixedDeltaTime;
+        Vector3 direction = transform.forward;
 
-        float speed = headTrainModel.GetCurrentSpeed() * (Vector3.Dot(transform.forward, headTrainModel.GetCurrentSpeedVector()) < 0 ? -1 : 1);
+        float newSpeed = (headTrainModel.GetCurrentSpeed() + speedChange) * (headTrainModel.IsInvertRotation() ? -1 : 1);
+        newSpeed = Mathf.Clamp(newSpeed, minSpeed, maxSpeed);
 
-        if (speed < minSpeed)
-        {
-            headTrainModel.SetCurrentSpeedVector(dir * minSpeed);
-        }
-        if (speed > maxSpeed)
-        {
-            headTrainModel.SetCurrentSpeedVector(headTrainModel.GetCurrentSpeedVector().normalized * maxSpeed);
-        }
+        headTrainModel.SetCurrentSpeed(newSpeed);
+        headTrainModel.SetCurrentSpeedVector(direction * newSpeed);
     }
 }

@@ -5621,6 +5621,7 @@ GameObject:
   - component: {fileID: 8150565936981976612}
   - component: {fileID: 3298592428406952927}
   - component: {fileID: 5608404826473290072}
+  - component: {fileID: 6513166925229233230}
   m_Layer: 0
   m_Name: 81-714 5
   m_TagString: Untagged
@@ -5711,6 +5712,8 @@ MonoBehaviour:
   rail: {fileID: 0}
   invertRotation: 0
   braking: 0
+  currentSpeedMagnitude: 0
+  currentSpeed: {x: 0, y: 0, z: 0}
   brakeLamp: {fileID: 6681458206456602942}
   doorLamp: {fileID: 8510334540097944082}
   alarmLampController: {fileID: 2459219941988969089}
@@ -5946,6 +5949,45 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!205 &6513166925229233230
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904249947236179983}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5309930140279803901}
+    - renderer: {fileID: 8669918717547117571}
+    - renderer: {fileID: 9220482645196814652}
+    - renderer: {fileID: 2386137314958315857}
+    - renderer: {fileID: 7284967225021942657}
+    - renderer: {fileID: 4091185394572785168}
+    - renderer: {fileID: 2020006933288040598}
+    - renderer: {fileID: 7399391736389521684}
+    - renderer: {fileID: 2036374570522764394}
+    - renderer: {fileID: 8090996505796920599}
+    - renderer: {fileID: 3071509070560132421}
+    - renderer: {fileID: 435626743896712526}
+    - renderer: {fileID: 7666287355580705486}
+    - renderer: {fileID: 1930713448390849757}
+    - renderer: {fileID: 2018240700070309717}
+  - screenRelativeHeight: 0.004
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5309930140279803901}
+    - renderer: {fileID: 8669918717547117571}
+    - renderer: {fileID: 9220482645196814652}
+  m_Enabled: 1
 --- !u!1 &7930273168265993299
 GameObject:
   m_ObjectHideFlags: 0

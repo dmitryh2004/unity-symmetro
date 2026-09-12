@@ -42,6 +42,17 @@ public class TrainSeat : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        for (int i = 0; i < seatPositions.Length; i++)
+        {
+            if (!seatOccupied[i]) continue;
+            SeatableEntity entity = seatedEntities[i];
+            if (entity == null) continue;
+            entity.GetTransform().localPosition = seatPositions[i];
+        }
+    }
+
     #region Public API
 
     /// <summary>

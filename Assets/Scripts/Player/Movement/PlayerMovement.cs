@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
     private bool isSeated = false;
     private TrainSeat currentSeat = null;
     private TrainEngine currentTrainEngine = null;
+    private HeadTrainController currentTrainController = null;
 
     private PlayerControls controls;
     // PlayerInventoryController inventoryController;
@@ -84,8 +85,9 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
         isSeated = seated;
     }
 
-    public void SetTrainEngine(TrainEngine trainEngine) {
+    public void SetTrainCabinLinks(TrainEngine trainEngine, HeadTrainController htc) {
         currentTrainEngine = trainEngine;
+        currentTrainController = htc;
     }
 
     public void TrainEngineIncrease(InputAction.CallbackContext context) {
@@ -102,7 +104,19 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
         }
     }
 
-    public void ClearTrainEngine() => currentTrainEngine = null;
+    public void ClearTrainCabinLinks() {
+        currentTrainEngine = null;
+        currentTrainController = null;
+    }
+
+    public void ChangeTrainBraking(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (currentTrainController != null)
+        {
+            currentTrainController.SetBraking(!currentTrainController.GetTrainModel().IsBraking());
+        }
+    }
 
     private void Update()
     {
