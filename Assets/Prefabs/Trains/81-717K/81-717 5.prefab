@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1
+  interactionRange: 1.5
   callback:
     m_PersistentCalls:
       m_Calls:
@@ -1795,6 +1795,7 @@ MonoBehaviour:
   - {fileID: 2394525562457206424}
   engine: {fileID: 8627654366393080024}
   cabinLight: {fileID: 8723224607793869310}
+  controlPanelController: {fileID: 7017100689076194704}
   chainedVagons: []
   speedController: {fileID: 9171744275174129135}
 --- !u!54 &7147831773650948378
@@ -3774,7 +3775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1
+  interactionRange: 1.5
   callback:
     m_PersistentCalls:
       m_Calls:
@@ -8084,7 +8085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1
+  interactionRange: 1.5
   callback:
     m_PersistentCalls:
       m_Calls:
@@ -8409,7 +8410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1
+  interactionRange: 1.5
   callback:
     m_PersistentCalls:
       m_Calls:
@@ -11939,6 +11940,7 @@ GameObject:
   - component: {fileID: 8641661088873917166}
   - component: {fileID: 5425088904455800026}
   - component: {fileID: 3352865886012293819}
+  - component: {fileID: 7017100689076194704}
   m_Layer: 0
   m_Name: train control panel
   m_TagString: Untagged
@@ -12021,6 +12023,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7017100689076194704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528480233474713078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfd2291beb9eeb49b7a08f8d8addccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedModel: {fileID: 5875200053455845017}
+  doorsLeft: {fileID: 2743068822484079260}
+  doorsRight: {fileID: 7408333209987388360}
+  doorsLeft_s: {fileID: 3428715896850805969}
+  doorsRight_s: {fileID: 6980114539058318091}
+  speedController: {fileID: 9171744275174129135}
 --- !u!1 &6544409912151225639
 GameObject:
   m_ObjectHideFlags: 0
@@ -12253,7 +12273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1
+  interactionRange: 1.5
   callback:
     m_PersistentCalls:
       m_Calls:
@@ -15994,7 +16014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1
+  interactionRange: 1.5
   callback:
     m_PersistentCalls:
       m_Calls:
@@ -16230,7 +16250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1
+  interactionRange: 1.5
   callback:
     m_PersistentCalls:
       m_Calls:

@@ -12,6 +12,7 @@ public class HeadTrainModel : TrainModel
 
     [SerializeField] TrainEngine engine;
     [SerializeField] TrainLampController cabinLight;
+    [SerializeField] ControlPanelController controlPanelController;
     bool cabinLightEnabled = false;
 
     [SerializeField] public List<TrainModel> chainedVagons = new();
@@ -21,8 +22,7 @@ public class HeadTrainModel : TrainModel
 
     private void Start()
     {
-        UpdateLights();
-        engine.SetActive(active);
+        SetActive(active);
     }
 
     public bool IsActive() => active;
@@ -31,6 +31,7 @@ public class HeadTrainModel : TrainModel
         this.active = active;
         engine.SetActive(active);
         UpdateLights();
+        controlPanelController.UpdateState(active);
     }
 
     public void SetLightsEnabled(bool lightsEnabled)

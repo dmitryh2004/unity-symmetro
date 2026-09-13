@@ -201,12 +201,12 @@ public class TrainModel : MonoBehaviour
     private void FixedUpdate()
     {
         // изменяем текущую скорость, учитывая трение и наклоны
-        SetCurrentSpeed(Mathf.Sign(currentSpeed.magnitude) * Mathf.Clamp(Mathf.Abs(currentSpeed.magnitude - frictionDeceleration * Time.fixedDeltaTime), 0f, 25f));
-        SetCurrentSpeedVector(GetCurrentSpeedVector().normalized * currentSpeedMagnitude);
+        SetCurrentSpeed(Mathf.Sign(currentSpeed.magnitude) * Mathf.Clamp(Mathf.Abs(currentSpeed.magnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, 25f));
+        SetCurrentSpeedVector(currentSpeed.normalized * currentSpeedMagnitude);
 
         // возвращаем вагон к ближайшей точке текущего сплайна с учетом его текущей скорости
         var native = new NativeSpline(currentSpline);
-        float distance = SplineUtility.GetNearestPoint(native, transform.position + currentSpeed * Time.fixedDeltaTime * (invertRotation ? -1 : 1), out float3 nearest, out float t);
+        float distance = SplineUtility.GetNearestPoint(native, transform.position + currentSpeed * Time.fixedDeltaTime * (ShouldInvert() ? -1 : 1), out float3 nearest, out float t);
 
         rb.MovePosition(nearest);
 
@@ -220,17 +220,17 @@ public class TrainModel : MonoBehaviour
 
         rb.MoveRotation(Quaternion.LookRotation(forward, up) * axisRemapRotation);
 
-        Vector3 engineForward = transform.forward;
+        // Vector3 engineForward = transform.forward;
 
-        if (invertRotation)
-        {
-            engineForward *= -1;
-        }
+        // if (invertRotation)
+        // {
+        //     engineForward *= -1;
+        // }
 
-        if (braking)
+        if (braking && Mathf.Abs(currentSpeedMagnitude) > 0f)
         {
             Vector3 newVelocity = currentSpeed;
-            float newSpeed = Mathf.Sign(newVelocity.magnitude) * Mathf.Clamp(Mathf.Abs(newVelocity.magnitude - brakingDeceleration * Time.fixedDeltaTime), 0f, 25f);
+            float newSpeed = Mathf.Sign(newVelocity.magnitude) * Mathf.Clamp(Mathf.Abs(newVelocity.magnitude) - brakingDeceleration * Time.fixedDeltaTime, 0f, 25f);
 
             currentSpeed = newVelocity.normalized * newSpeed;
             currentSpeedMagnitude = newSpeed;
@@ -238,7 +238,7 @@ public class TrainModel : MonoBehaviour
 
         if (this is HeadTrainModel htm && htm.IsActive())
         {
-            currentSpeed = currentSpeedMagnitude * engineForward;
+            // currentSpeed = currentSpeedMagnitude * engineForward;
             foreach (TrainModel vagon in htm.chainedVagons)
             {
                 if (vagon != this)

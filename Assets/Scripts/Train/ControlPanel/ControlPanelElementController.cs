@@ -70,6 +70,13 @@ public class ControlPanelElementController : Interactable
         InvokeCallback(currentState);
     }
 
+    public void SetState(bool newState)
+    {
+        currentState = newState;
+        if (anim != null)
+            anim.SetBool("state", currentState);
+    }
+
     public void ToggleState()
     {
         ChangeState(!currentState);

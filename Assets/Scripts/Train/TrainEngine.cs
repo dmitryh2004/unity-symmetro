@@ -46,12 +46,16 @@ public class TrainEngine : MonoBehaviour
 
     private void Throttle(float power)
     {
+        bool invertRotation = headTrainModel.IsInvertRotation();
+
         float factor = acceleration / 4f;
         float speedChange = factor * accelerationSpeed * Time.fixedDeltaTime;
-        Vector3 direction = transform.forward;
+        Vector3 direction = transform.forward * (invertRotation ? -1 : 1);
 
-        float newSpeed = (headTrainModel.GetCurrentSpeed() + speedChange) * (headTrainModel.IsInvertRotation() ? -1 : 1);
-        newSpeed = Mathf.Clamp(newSpeed, minSpeed, maxSpeed);
+        float newSpeed = (headTrainModel.GetCurrentSpeed() + speedChange) * (invertRotation ? -1 : 1);
+        newSpeed = invertRotation ? Mathf.Clamp(newSpeed, -maxSpeed, -minSpeed) : Mathf.Clamp(newSpeed, minSpeed, maxSpeed);
+        if (newSpeed != 0f)
+            Debug.Log($"newSpeed = {newSpeed}");
 
         headTrainModel.SetCurrentSpeed(newSpeed);
         headTrainModel.SetCurrentSpeedVector(direction * newSpeed);
