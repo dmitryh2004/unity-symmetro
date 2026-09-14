@@ -5,6 +5,8 @@ public interface SeatableEntity
 {
     void Seat(TrainSeat seat);
     void StandUp();
+    void SetZone(EntityAttachmentZone zone);
+    SeatableEntityMover GetMover();
     Transform GetTransform();
     GameObject GetGameObject();
 }
@@ -21,6 +23,8 @@ public class TrainSeat : MonoBehaviour
     [Header("Debug / Runtime")]
     [Tooltip("Занятость мест: true — занято, false — свободно.")]
     public bool[] seatOccupied;
+
+    [SerializeField] EntityAttachmentZone entityAttachmentZone = null;
 
     // Сущности, сидящие на местах (по индексу места)
     private SeatableEntity[] seatedEntities;
@@ -162,6 +166,9 @@ public class TrainSeat : MonoBehaviour
 
         SeatableEntity entity = GetSittingEntity(seatIndex);
         entity.GetTransform().SetParent(null);
+        if (entityAttachmentZone != null) {
+            entityAttachmentZone.AddNewEntity(entity);
+        }
         entity.StandUp();
         OnStoodUp(entity);
 

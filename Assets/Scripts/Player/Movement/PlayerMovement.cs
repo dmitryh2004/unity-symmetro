@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
     private TrainSeat currentSeat = null;
     private TrainEngine currentTrainEngine = null;
     private HeadTrainController currentTrainController = null;
+    private SeatableEntityMover seatableEntityMover;
 
     private PlayerControls controls;
     // PlayerInventoryController inventoryController;
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        seatableEntityMover = GetComponent<SeatableEntityMover>();
         // inventoryController = GetComponent<PlayerInventoryController>();
         controls = new PlayerControls();
         currentHeight = standHeight;
@@ -204,7 +206,9 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
         Vector3 velocity = rb.linearVelocity;
         velocity.x = moveDirection.x * currentSpeed;
         velocity.z = moveDirection.z * currentSpeed;
-        rb.linearVelocity = velocity;
+        // rb.linearVelocity = velocity;
+
+        seatableEntityMover.inputVelocityLocal = velocity;
 
         // прыжок
         if (isJumpPressed && isGrounded)
@@ -238,6 +242,11 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
         rb.WakeUp();
     }
 
+    public void SetZone(EntityAttachmentZone zone) {
+        seatableEntityMover.SetZone(zone);
+    }
+
+    public SeatableEntityMover GetMover() => seatableEntityMover;
     public Transform GetTransform() => transform;
     public GameObject GetGameObject() => gameObject;
 }

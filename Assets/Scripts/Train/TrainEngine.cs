@@ -6,7 +6,7 @@ public class TrainEngine : MonoBehaviour
     bool active = false;
     int acceleration = 0; // from 1 to 4 - accelerate, from -4 to -1 - break
     [SerializeField] float minSpeed = 0f, maxSpeed = 20f;
-    [SerializeField] float accelerationSpeed = 1.2f; // насколько разгоняется вагон при полном ускорении
+    [SerializeField] float accelerationSpeed = 1.2f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     [SerializeField] HeadTrainModel headTrainModel;
     [SerializeField] Rigidbody rb;
@@ -54,8 +54,8 @@ public class TrainEngine : MonoBehaviour
 
         float newSpeed = (headTrainModel.GetCurrentSpeed() + speedChange) * (invertRotation ? -1 : 1);
         newSpeed = invertRotation ? Mathf.Clamp(newSpeed, -maxSpeed, -minSpeed) : Mathf.Clamp(newSpeed, minSpeed, maxSpeed);
-        if (newSpeed != 0f)
-            Debug.Log($"newSpeed = {newSpeed}");
+        // if (newSpeed != 0f)
+        //     Debug.Log($"newSpeed = {newSpeed}");
 
         headTrainModel.SetCurrentSpeed(newSpeed);
         headTrainModel.SetCurrentSpeedVector(direction * newSpeed);
