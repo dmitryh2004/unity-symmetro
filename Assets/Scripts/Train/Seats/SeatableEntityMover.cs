@@ -27,6 +27,12 @@ public class SeatableEntityMover : MonoBehaviour
         if (CurrentZone != null)
         {
             targetVelocityWorld += CurrentZone.WorldVelocity;
+
+            var omega = CurrentZone.WorldAngularVelocity; // в рад/с
+            var r = transform.position - CurrentZone.transform.position;
+            var rotationVelocity = Vector3.Cross(omega, r);
+
+            targetVelocityWorld += rotationVelocity;
         }
         else
         {

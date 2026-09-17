@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17fe927f8bb92e40853b050c2ba314d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ensureTrigger: 1
+  _entitiesInside: []
 --- !u!1 &611733887674599409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,6 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1.5
   callback:
     m_PersistentCalls:
@@ -1521,6 +1522,7 @@ MonoBehaviour:
   invokeCallbackConditions:
   - {fileID: 5093047721018788224}
   startState: 0
+  interactionHintText: "\u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C"
 --- !u!95 &1473262326444451283
 Animator:
   serializedVersion: 7
@@ -3843,6 +3845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1.5
   callback:
     m_PersistentCalls:
@@ -3882,6 +3885,7 @@ MonoBehaviour:
   - {fileID: 4513121857121330410}
   - {fileID: 1150189359372525351}
   startState: 0
+  interactionHintText: "\u043D\u0430\u0436\u0430\u0442\u044C"
 --- !u!65 &4087097904393861720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7186,6 +7190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5a5b63b2fa0fd43930482b76c9ba84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedReasonText: "[\u041F\u043E\u0435\u0437\u0434 \u0434\u0432\u0438\u0436\u0435\u0442\u0441\u044F
+    \u0438\u043B\u0438 \u0442\u043E\u0440\u043C\u043E\u0437\u0430 \u043D\u0435 \u0432\u043A\u043B\u044E\u0447\u0435\u043D\u044B]"
   trainModel: {fileID: 5875200053455845017}
 --- !u!1 &4097589960118787088
 GameObject:
@@ -7817,6 +7823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222fdc6a66217f545871f90242a6b54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1
   anim: {fileID: 4762131525014402856}
 --- !u!1 &4345326540121365502
@@ -8153,6 +8160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1.5
   callback:
     m_PersistentCalls:
@@ -8176,6 +8184,7 @@ MonoBehaviour:
   invokeCallbackConditions:
   - {fileID: 375488272901970903}
   startState: 0
+  interactionHintText: "\u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C"
 --- !u!1 &4409540691434290528
 GameObject:
   m_ObjectHideFlags: 0
@@ -8479,6 +8488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1.5
   callback:
     m_PersistentCalls:
@@ -8502,6 +8512,7 @@ MonoBehaviour:
   invokeCallbackConditions:
   - {fileID: 375488272901970903}
   startState: 0
+  interactionHintText: "\u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C"
 --- !u!95 &2477612124142091050
 Animator:
   serializedVersion: 7
@@ -9238,6 +9249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad8cf872b867644fbed192de7351639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1
   seatIndex: 0
   seatObject: {fileID: 1645085756097566735}
@@ -9410,6 +9422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222fdc6a66217f545871f90242a6b54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1
   anim: {fileID: 8112754256329792389}
 --- !u!1 &4968433828057368356
@@ -12342,6 +12355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1.5
   callback:
     m_PersistentCalls:
@@ -12365,6 +12379,7 @@ MonoBehaviour:
   invokeCallbackConditions:
   - {fileID: 375488272901970903}
   startState: 0
+  interactionHintText: "\u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C"
 --- !u!1 &6687601723850178727
 GameObject:
   m_ObjectHideFlags: 0
@@ -12848,6 +12863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca5fb595db055141993a6717e5131f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedReasonText: "[\u041A\u0430\u0431\u0438\u043D\u0430 \u043D\u0435\u0430\u043A\u0442\u0438\u0432\u043D\u0430]"
   headTrainModel: {fileID: 5875200053455845017}
 --- !u!1 &6981196113519952290
 GameObject:
@@ -14149,6 +14165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc6847a9c22f6049a5850a92faeee38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedReasonText: "[\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D\u044B \u043F\u0440\u0430\u0432\u044B\u0435
+    \u0434\u0432\u0435\u0440\u0438]"
   doorSelector: {fileID: 287944169098434064}
 --- !u!1 &7604907125229890585
 GameObject:
@@ -14695,6 +14713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222fdc6a66217f545871f90242a6b54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1
   anim: {fileID: 0}
 --- !u!95 &7060822903720393411
@@ -15981,6 +16000,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80621c4dece91904685bd1b6f5fa485e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedReasonText: "[\u0414\u0440\u0443\u0433\u0430\u044F \u043A\u0430\u0431\u0438\u043D\u0430
+    \u0430\u043A\u0442\u0438\u0432\u043D\u0430]"
   headTrainController: {fileID: 4383431417415365940}
 --- !u!1 &8595238833389082841
 GameObject:
@@ -16083,6 +16104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1.5
   callback:
     m_PersistentCalls:
@@ -16122,6 +16144,7 @@ MonoBehaviour:
   - {fileID: 6430583852762675991}
   - {fileID: 1150189359372525351}
   startState: 0
+  interactionHintText: "\u043D\u0430\u0436\u0430\u0442\u044C"
 --- !u!65 &6442842507956731602
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16319,6 +16342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   interactionRange: 1.5
   callback:
     m_PersistentCalls:
@@ -16342,6 +16366,7 @@ MonoBehaviour:
   invokeCallbackConditions:
   - {fileID: 375488272901970903}
   startState: 0
+  interactionHintText: "\u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C"
 --- !u!65 &6676879774960495144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16429,6 +16454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad85769931343b042adde205e7fa84ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedReasonText: "[\u041D\u0435 \u0432\u044B\u0431\u0440\u0430\u043D\u044B \u043B\u0435\u0432\u044B\u0435
+    \u0434\u0432\u0435\u0440\u0438]"
   doorSelector: {fileID: 287944169098434064}
 --- !u!1 &8830450520815729720
 GameObject:

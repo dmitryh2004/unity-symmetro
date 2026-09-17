@@ -19,6 +19,8 @@ public class ControlPanelElementController : Interactable
     [SerializeField] List<IBoolCondition> changeStateConditions = new ();
     [SerializeField] List<IBoolCondition> invokeCallbackConditions = new ();
     [SerializeField] bool startState = false;
+
+    [SerializeField] string interactionHintText = "переключить";
     bool currentState;
 
     private void Awake()
@@ -95,5 +97,28 @@ public class ControlPanelElementController : Interactable
     public override void Interact()
     {
         ToggleState();
+    }
+
+    public override bool CanInteract() 
+    {
+        return AreChangeStateConditionsMet();
+    }
+
+    public override string GetUnavailableReason() 
+    {
+        foreach (IBoolCondition condition in changeStateConditions)
+        {
+            if (condition == null) continue;
+            if (!condition.Check()) return condition.GetUnavailableReasonText();
+        }
+        return string.Empty;
+    }
+
+    public override string GetInteractionHint() 
+    {
+        // Вызываем унаследованный метод для получения текущей клавиши
+        string bindingKey = GetInteractKeyDisplayString();
+        
+        return $"[{bindingKey}] - {interactionHintText}";
     }
 }
