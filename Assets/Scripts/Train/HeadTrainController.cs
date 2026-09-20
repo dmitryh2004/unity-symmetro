@@ -64,6 +64,22 @@ public class HeadTrainController : TrainController
         }
     }
 
+    public void SetReleasing(bool releasing)
+    {
+        foreach (var vagon in vagons)
+        {
+            vagon._SetReleasing(releasing);
+        }
+    }
+
+    public void SetCompressorActive(bool a)
+    {
+        foreach (var vagon in vagons)
+        {
+            vagon._SetCompressorActive(a);
+        }
+    }
+
     public void SetRegularLightState(bool newState)
     {
         foreach (var vagon in vagons)

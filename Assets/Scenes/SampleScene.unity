@@ -2612,7 +2612,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
@@ -4738,7 +4738,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
@@ -6533,7 +6533,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
@@ -10652,6 +10652,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1adc452c-cef7-432c-a4e9-098948f576de
     m_ActionName: 'TrainCabinSeat/Brake[/Keyboard/b]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 322918903}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: ChangeTrainReleasing
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2a488ab1-f50d-4d02-a2c5-ff39d80429b8
+    m_ActionName: 'TrainCabinSeat/Release[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -15264,7 +15280,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
@@ -20439,7 +20455,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon
@@ -49307,7 +49323,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: headVagon
@@ -63039,7 +63055,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5875200053455845017, guid: 06b9fa05139e5054d8862e41fda7a8c0, type: 3}
       propertyPath: headVagon
@@ -63267,7 +63283,7 @@ PrefabInstance:
       objectReference: {fileID: 1995385650}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: braking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4164725882590923086, guid: 48ee3c82ca903754fac5b12415691761, type: 3}
       propertyPath: headVagon

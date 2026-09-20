@@ -7,6 +7,7 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask interactionLayer;
+    private Interactable lastSeenInteractable = null;
 
 [Header("UI Hints")]
     [SerializeField] private UnityEngine.UI.Image cursorImage; // Ссылка на Image точки на экране
@@ -47,18 +48,22 @@ public class PlayerInteractor : MonoBehaviour
     private void TryInteract()
     {
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+        Debug.Log($"Trying to interact - origin: {ray.origin}, direction: {ray.direction}");
+
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
             interactionLayer,
             QueryTriggerInteraction.Ignore))
         {
-            Debug.Log($"player: found {hit.collider.gameObject.name}");
+            Debug.Log($"player: found {hit.collider.gameObject.name} at position = {hit.point}");
             if (hit.collider.TryGetComponent(out Interactable interactable))
             {
                 Debug.Log($"{hit.collider.gameObject.name} is interactable");
                 if (hit.distance < interactable.GetInteractionRange())
                 {
-                    interactable.Interact();
+                    interactable.Interact(); // взаимодействуем по рейкасту
+                    return;
                 }
                 else
                 {
@@ -66,6 +71,9 @@ public class PlayerInteractor : MonoBehaviour
                 }
             }
         }
+
+        if (lastSeenInteractable != null) // если не получилось взаимодействовать через рейкаст, то пробуем взаимодействовать по ссылке на последний увиденный объект
+            lastSeenInteractable.Interact();
     }
 
     private void UpdateInteractionHints()
@@ -78,6 +86,7 @@ public class PlayerInteractor : MonoBehaviour
         {
             if (hit.collider.TryGetComponent(out Interactable interactable))
             {
+                lastSeenInteractable = interactable;
                 bool isRangeValid = hit.distance < interactable.GetInteractionRange();
                 bool isActionPossible = interactable.CanInteract(); 
 
@@ -104,6 +113,7 @@ public class PlayerInteractor : MonoBehaviour
         }
 
         // Если ни на что не смотрим — сбрасываем цвет и очищаем текст
+        lastSeenInteractable = null;
         cursorImage.color = defaultColor;
         if (hintText != null) hintText.text = string.Empty;
     }

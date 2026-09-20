@@ -45,4 +45,14 @@ public class TrainController : MonoBehaviour
     {
         trainModel.SetBraking(braking);
     }
+
+    public void _SetReleasing(bool releasing)
+    {
+        trainModel.SetReleasing(releasing);
+    }
+
+    public void _SetCompressorActive(bool compressorActive)
+    {
+        trainModel.SetCompressorActive(compressorActive);
+    }
 }

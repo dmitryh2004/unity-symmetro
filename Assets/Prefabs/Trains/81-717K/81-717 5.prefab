@@ -1025,6 +1025,7 @@ GameObject:
   - component: {fileID: 6870597655466853854}
   - component: {fileID: 6441114390184606399}
   - component: {fileID: 5112338055543200634}
+  - component: {fileID: 6860719518476678991}
   m_Layer: 0
   m_Name: manometer brake magistral arrow
   m_TagString: Untagged
@@ -1040,9 +1041,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487754913257567715}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268346}
   m_LocalPosition: {x: 0, y: -0.00018576966, z: 0}
-  m_LocalScale: {x: 99.999985, y: 99.999985, z: 100}
+  m_LocalScale: {x: 99.99998, y: 99.99998, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3468446196948198280}
@@ -1100,6 +1101,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6860719518476678991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487754913257567715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ec683ac196e4e4ca677312b58cf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPressure: 0
+  maxPressure: 10
+  currentPressure: 0
+  arrowTransform: {fileID: 6870597655466853854}
+  minPressureAngle: 135
+  maxPressureAngle: -135
+  smoothMovement: 1
+  smoothSpeed: 5
+  tintColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &501740959785162045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,9 +1869,23 @@ MonoBehaviour:
   trainNumberRight: {fileID: 6486761106147124378}
   rail: {fileID: 0}
   invertRotation: 0
-  braking: 0
   currentSpeedMagnitude: 0
   currentSpeed: {x: 0, y: 0, z: 0}
+  braking: 0
+  releasing: 0
+  compressorActive: 0
+  brakeMagistralPressure: 0
+  naporMagistralPressure: 0
+  brakeCylindersPressure: 2
+  brakeMagistralMaxPressure: 5.2
+  naporMagistralMaxPressure: 7.5
+  brakeCylindersMaxPressure: 2
+  cylindersPressureChangeSpeed: 1
+  magistralPressureChangeSpeed: 0.5
+  compressorPressureChargeSpeed: 0.125
+  brakeMagistralGauge: {fileID: 6860719518476678991}
+  naporMagistralGauge: {fileID: 2566453365663910183}
+  brakeCylindersGauge: {fileID: 2149772831166186900}
   brakeLamp: {fileID: 7394878616432415911}
   doorLamp: {fileID: 1111950745004341594}
   alarmLampController: {fileID: 1539706735466282519}
@@ -3669,6 +3705,7 @@ GameObject:
   - component: {fileID: 4009782710280146129}
   - component: {fileID: 1958153008339897980}
   - component: {fileID: 4070654773735705930}
+  - component: {fileID: 2149772831166186900}
   m_Layer: 0
   m_Name: manometer cylinder arrow
   m_TagString: Untagged
@@ -3684,7 +3721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921193591023746454}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 99.999985, z: 99.99998}
   m_ConstrainProportionsScale: 0
@@ -3744,6 +3781,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2149772831166186900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921193591023746454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ec683ac196e4e4ca677312b58cf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPressure: 0
+  maxPressure: 10
+  currentPressure: 0
+  arrowTransform: {fileID: 4009782710280146129}
+  minPressureAngle: 135
+  maxPressureAngle: -135
+  smoothMovement: 1
+  smoothSpeed: 5
+  tintColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1931640938046525680
 GameObject:
   m_ObjectHideFlags: 0
@@ -6526,6 +6584,7 @@ GameObject:
   - component: {fileID: 3797845570868989881}
   - component: {fileID: 977178876809757575}
   - component: {fileID: 6964165090577136936}
+  - component: {fileID: 2566453365663910183}
   m_Layer: 0
   m_Name: manometer napor magistral arrow
   m_TagString: Untagged
@@ -6541,7 +6600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3742371335496088265}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
+  m_LocalRotation: {x: 0, y: 0.809017, z: 0, w: 0.5877853}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
@@ -6601,6 +6660,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2566453365663910183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742371335496088265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ec683ac196e4e4ca677312b58cf3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPressure: 0
+  maxPressure: 10
+  currentPressure: 1
+  arrowTransform: {fileID: 3797845570868989881}
+  minPressureAngle: 135
+  maxPressureAngle: -135
+  smoothMovement: 1
+  smoothSpeed: 5
+  tintColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &3769763768616629951
 GameObject:
   m_ObjectHideFlags: 0
@@ -6661,7 +6741,10 @@ GameObject:
   - component: {fileID: 8036144390628710368}
   - component: {fileID: 6802446708005111925}
   - component: {fileID: 2310850530106728645}
-  m_Layer: 0
+  - component: {fileID: 560526041563553321}
+  - component: {fileID: 6171249412768888976}
+  - component: {fileID: 131183999212688749}
+  m_Layer: 7
   m_Name: tumbler compressor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6736,6 +6819,86 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &560526041563553321
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824627178201264687}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.000099999976, y: 0.00013711856, z: 0.00022507276}
+  m_Center: {x: -4.656613e-10, y: 0.000018563022, z: 0.00011252892}
+--- !u!114 &6171249412768888976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824627178201264687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f7f41ce6453904db2b6d777e221929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  interactionRange: 1.5
+  callback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4383431417415365940}
+        m_TargetAssemblyTypeName: TrainController, Assembly-CSharp
+        m_MethodName: _SetCompressorActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  anim: {fileID: 131183999212688749}
+  color: 0
+  changeStateConditions:
+  - {fileID: 375488272901970903}
+  invokeCallbackConditions:
+  - {fileID: 375488272901970903}
+  startState: 0
+  interactionHintText: "\u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C"
+--- !u!95 &131183999212688749
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824627178201264687}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 090a10967a084ff45b4014b2ee04c98d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3833685452815574209
 GameObject:
   m_ObjectHideFlags: 0
@@ -8340,7 +8503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seatPositions:
-  - {x: 0, y: 0.002, z: 0.00528}
+  - {x: 0, y: 0, z: 0.00528}
   seatOccupied: 
   entityAttachmentZone: {fileID: 782423867858230664}
   trainEngine: {fileID: 8627654366393080024}

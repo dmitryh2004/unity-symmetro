@@ -433,6 +433,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a488ab1-f50d-4d02-a2c5-ff39d80429b8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -512,6 +521,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Brake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31eb1ebc-0dd8-4082-be32-2f6cbdcdbd44"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -542,6 +562,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_TrainCabinSeat_LeverUp = m_TrainCabinSeat.FindAction("LeverUp", throwIfNotFound: true);
         m_TrainCabinSeat_LeverDown = m_TrainCabinSeat.FindAction("LeverDown", throwIfNotFound: true);
         m_TrainCabinSeat_Brake = m_TrainCabinSeat.FindAction("Brake", throwIfNotFound: true);
+        m_TrainCabinSeat_Release = m_TrainCabinSeat.FindAction("Release", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -922,6 +943,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_TrainCabinSeat_LeverUp;
     private readonly InputAction m_TrainCabinSeat_LeverDown;
     private readonly InputAction m_TrainCabinSeat_Brake;
+    private readonly InputAction m_TrainCabinSeat_Release;
     /// <summary>
     /// Provides access to input actions defined in input action map "TrainCabinSeat".
     /// </summary>
@@ -961,6 +983,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "TrainCabinSeat/Brake".
         /// </summary>
         public InputAction @Brake => m_Wrapper.m_TrainCabinSeat_Brake;
+        /// <summary>
+        /// Provides access to the underlying input action "TrainCabinSeat/Release".
+        /// </summary>
+        public InputAction @Release => m_Wrapper.m_TrainCabinSeat_Release;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1008,6 +1034,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Brake.started += instance.OnBrake;
             @Brake.performed += instance.OnBrake;
             @Brake.canceled += instance.OnBrake;
+            @Release.started += instance.OnRelease;
+            @Release.performed += instance.OnRelease;
+            @Release.canceled += instance.OnRelease;
         }
 
         /// <summary>
@@ -1040,6 +1069,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Brake.started -= instance.OnBrake;
             @Brake.performed -= instance.OnBrake;
             @Brake.canceled -= instance.OnBrake;
+            @Release.started -= instance.OnRelease;
+            @Release.performed -= instance.OnRelease;
+            @Release.canceled -= instance.OnRelease;
         }
 
         /// <summary>
@@ -1222,5 +1254,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBrake(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Release" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRelease(InputAction.CallbackContext context);
     }
 }

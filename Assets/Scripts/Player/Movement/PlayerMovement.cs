@@ -120,6 +120,15 @@ public class PlayerMovement : MonoBehaviour, SeatableEntity
         }
     }
 
+    public void ChangeTrainReleasing(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (currentTrainController != null)
+        {
+            currentTrainController.SetReleasing(!currentTrainController.GetTrainModel().IsReleasing());
+        }
+    }
+
     private void Update()
     {
         UpdateSpeed();

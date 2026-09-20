@@ -21,11 +21,31 @@ public class TrainModel : MonoBehaviour
     [SerializeField] private SplineContainer rail;
     [SerializeField] private bool invertRotation = false;
 
-    [SerializeField] private bool braking = true;
-    private float brakingDeceleration = 1.8f;
     private float frictionDeceleration = 0.025f;
     [SerializeField] private float currentSpeedMagnitude = 0f;
     [SerializeField] private Vector3 currentSpeed = Vector3.zero;
+
+    [Header("Braking")]
+    [SerializeField] private bool braking = false;
+    [SerializeField] private bool releasing = false;
+    [SerializeField] private bool compressorActive = false;
+    private float brakingDeceleration = 1.8f;
+    [SerializeField] private float brakeMagistralPressure = 0f;
+    [SerializeField] private float naporMagistralPressure = 0f;
+    [SerializeField] private float brakeCylindersPressure = 2f;
+
+    [Header("Braking constants")]
+    [SerializeField] private float brakeMagistralMaxPressure = 5.2f;
+    [SerializeField] private float naporMagistralMaxPressure = 7.5f;
+    [SerializeField] private float brakeCylindersMaxPressure = 2f;
+    [SerializeField] private float cylindersPressureChangeSpeed = 1f;
+    [SerializeField] private float magistralPressureChangeSpeed = .5f;
+    [SerializeField] private float compressorPressureChargeSpeed = .125f;
+
+    [Header("Braking system visualisation")]
+    [SerializeField] private PressureGauge brakeMagistralGauge;
+    [SerializeField] private PressureGauge naporMagistralGauge;
+    [SerializeField] private PressureGauge brakeCylindersGauge;
 
     [Header("Indication lamps")]
     [SerializeField] private TrainIndicationLampController brakeLamp;
@@ -58,6 +78,15 @@ public class TrainModel : MonoBehaviour
 
     public bool IsBraking() => braking;
     public void SetBraking(bool b) => braking = b;
+
+    public bool IsReleasing() => releasing;
+    public void SetReleasing(bool r) => releasing = r;
+
+    public bool IsCompressorActive() => compressorActive;
+    public void SetCompressorActive(bool a) => compressorActive = a; 
+
+    public bool IsBraked() => brakeCylindersPressure > 0f;
+    public float GetBrakeStrength() => brakeCylindersPressure / brakeCylindersMaxPressure;
 
     public bool IsInvertRotation() => invertRotation;
 
@@ -185,9 +214,57 @@ public class TrainModel : MonoBehaviour
 
     protected virtual void UpdateState()
     {
-        brakeLamp.ChangeState(IsPoweredUp() && braking);
+        brakeLamp.ChangeState(IsPoweredUp() && IsBraked());
         doorLamp.ChangeState(IsPoweredUp() && (leftDoorsOpened || rightDoorsOpened));
         UpdateLamps();
+        UpdateBrakingSystem();
+    }
+
+    private void UpdateBrakingSystem()
+    {
+        float dt = Time.deltaTime;
+        if (braking)
+        {
+            float bmPressureToUse = magistralPressureChangeSpeed * dt;
+            float bmPressureUsed = Mathf.Min(bmPressureToUse, brakeMagistralPressure);
+            float ratio = bmPressureUsed / bmPressureToUse;
+
+            float cylindersPressureToReceive = cylindersPressureChangeSpeed * ratio * dt;
+            float cylindersPressureReceived = Mathf.Min(cylindersPressureToReceive, brakeCylindersMaxPressure - brakeCylindersPressure);
+
+            brakeMagistralPressure -= bmPressureUsed;
+            brakeCylindersPressure += cylindersPressureReceived;
+        }
+        else if (releasing)
+        {
+            float cylindersPressureToRelease = cylindersPressureChangeSpeed * dt;
+            float cylindersPressureReleased = Mathf.Min(cylindersPressureToRelease, brakeCylindersPressure);
+
+            brakeCylindersPressure -= cylindersPressureReleased;
+
+            if (naporMagistralPressure > brakeMagistralPressure && brakeMagistralPressure < brakeMagistralMaxPressure)
+            {
+                float meanMagistralPressure = (naporMagistralPressure + brakeMagistralPressure) / 2f;
+                float nmPressureToUse = magistralPressureChangeSpeed * dt;
+                float nmPressureUsed = Mathf.Min(nmPressureToUse, naporMagistralPressure - meanMagistralPressure);
+
+                naporMagistralPressure -= nmPressureUsed;
+                brakeMagistralPressure += nmPressureUsed;
+            }
+        }
+
+        if (compressorActive)
+        {
+            float compressorChargeAmount = compressorPressureChargeSpeed * dt;
+
+            float nmPressureCharged = Mathf.Min(compressorChargeAmount, naporMagistralMaxPressure - naporMagistralPressure);
+
+            naporMagistralPressure += nmPressureCharged;
+        }
+
+        if (brakeCylindersGauge != null) brakeCylindersGauge.SetPressure(brakeCylindersPressure);
+        if (brakeMagistralGauge != null) brakeMagistralGauge.SetPressure(brakeMagistralPressure);
+        if (naporMagistralGauge != null) naporMagistralGauge.SetPressure(naporMagistralPressure);
     }
 
     private void UpdateLamps() {
@@ -227,10 +304,10 @@ public class TrainModel : MonoBehaviour
         //     engineForward *= -1;
         // }
 
-        if (braking && Mathf.Abs(currentSpeedMagnitude) > 0f)
+        if (IsBraked() && Mathf.Abs(currentSpeedMagnitude) > 0f)
         {
             Vector3 newVelocity = currentSpeed;
-            float newSpeed = Mathf.Sign(newVelocity.magnitude) * Mathf.Clamp(Mathf.Abs(newVelocity.magnitude) - brakingDeceleration * Time.fixedDeltaTime, 0f, 25f);
+            float newSpeed = Mathf.Sign(newVelocity.magnitude) * Mathf.Clamp(Mathf.Abs(newVelocity.magnitude) - brakingDeceleration * GetBrakeStrength() * Time.fixedDeltaTime, 0f, 25f);
 
             currentSpeed = newVelocity.normalized * newSpeed;
             currentSpeedMagnitude = newSpeed;
