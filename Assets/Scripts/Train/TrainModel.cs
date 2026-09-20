@@ -178,10 +178,13 @@ public class TrainModel : MonoBehaviour
         return trainNumberRight;
     }
 
-    public void HitJunction(Spline rail)
+    public void HitJunction(SplineContainer newRail)
     {
-        currentSpline = rail;
+        rail = newRail;
+        currentSpline = rail.Splines[0];
     }
+
+    public SplineContainer GetCurrentRail() => rail;
 
     public float GetCurrentSpeed()
     {

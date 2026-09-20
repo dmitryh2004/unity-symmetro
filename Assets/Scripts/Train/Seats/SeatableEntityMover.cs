@@ -40,6 +40,6 @@ public class SeatableEntityMover : MonoBehaviour
         }
 
         rb.linearVelocity = targetVelocityWorld;
-        Debug.Log($"inputVelocityLocal = {inputVelocityLocal}; current zone velocity = {CurrentZone.WorldVelocity}; result = {rb.linearVelocity}");
+        // Debug.Log($"inputVelocityLocal = {inputVelocityLocal}; current zone velocity = {CurrentZone.WorldVelocity}; result = {rb.linearVelocity}");
     }
 }
