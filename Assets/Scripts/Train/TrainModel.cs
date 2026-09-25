@@ -20,6 +20,7 @@ public class TrainModel : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private SplineContainer rail;
     [SerializeField] private bool invertRotation = false;
+    private float splineDirectionSign = 1f;
 
     private float frictionDeceleration = 0.025f;
     [SerializeField] private float currentSpeedMagnitude = 0f;
@@ -210,6 +211,17 @@ public class TrainModel : MonoBehaviour
         SetTrainNumber(trainNumber);
     }
 
+    private void Start() {
+        // Пример: при инициализации определяем знак один раз
+        var native = new NativeSpline(currentSpline);
+        SplineUtility.GetNearestPoint(native, transform.position, out float3 nearest, out float t);
+        Vector3 splineTangent = Vector3.Normalize(native.EvaluateTangent(t));
+
+        // Допустим, изначально хотим, чтобы forward вагона совпадал с tangent
+        splineDirectionSign = Vector3.Dot(transform.forward, splineTangent) >= 0f ? 1f : -1f;
+        splineDirectionSign *= invertRotation ? -1f : 1f;
+    }
+
     private void Update()
     {
         UpdateState();
@@ -280,19 +292,41 @@ public class TrainModel : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // изменяем текущую скорость, учитывая трение и наклоны
-        SetCurrentSpeed(Mathf.Sign(currentSpeed.magnitude) * Mathf.Clamp(Mathf.Abs(currentSpeed.magnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, 25f));
-        SetCurrentSpeedVector(currentSpeed.normalized * currentSpeedMagnitude);
+        // 1. Рассчитываем модуль скорости (учитывая трение)
+        float newSpeedMagnitude = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, 25f);
+        // Сохраняем знак направления (вперед/назад относительно самого вагона)
+        float speedSign = Mathf.Sign(currentSpeedMagnitude); 
+        currentSpeedMagnitude = newSpeedMagnitude * speedSign;
 
-        // возвращаем вагон к ближайшей точке текущего сплайна с учетом его текущей скорости
+        // Вектор скорости теперь ВСЕГДА сонаправлен с текущим поворотом вагона
+        currentSpeed = transform.forward * currentSpeedMagnitude;
+
+        // 2. Проекция на сплайн и поиск следующей точки
         var native = new NativeSpline(currentSpline);
-        float distance = SplineUtility.GetNearestPoint(native, transform.position + currentSpeed * Time.fixedDeltaTime * (ShouldInvert() ? -1 : 1), out float3 nearest, out float t);
+        
+        // Предсказываем позицию: текущая позиция + честное смещение по вектору скорости
+        Vector3 predictedPosition = transform.position + currentSpeed * Time.fixedDeltaTime;
+        
+        // Ищем ближайшую точку на сплайне для этой предсказанной позиции
+        float distance = SplineUtility.GetNearestPoint(native, predictedPosition, out float3 nearest, out float t);
 
+        // Перемещаем физическое тело
         rb.MovePosition(nearest);
 
-        // поворачиваем вагон вдоль касательной к текущей точке сплайна
-        Vector3 forward = Vector3.Normalize(native.EvaluateTangent(t)) * (invertRotation ? -1 : 1);
-        Vector3 up = native.EvaluateUpVector(t);
+        // 3. Вычисление честной ориентации вдоль сплайna
+        Vector3 splineTangent = Vector3.Normalize(native.EvaluateTangent(t));
+        Vector3 splineUp = native.EvaluateUpVector(t);
+
+        // Базовое направление с учётом однажды выбранного знака
+        Vector3 forward = splineTangent * splineDirectionSign;
+
+        // Инверсия для «перевернутых» вагонов
+        if (invertRotation)
+        {
+            forward = -forward;
+        }
+
+        Vector3 up = splineUp;
 
         var remappedForward = new Vector3(0, 0, 1);
         var remappedUp = new Vector3(0, 1, 0);
@@ -300,34 +334,33 @@ public class TrainModel : MonoBehaviour
 
         rb.MoveRotation(Quaternion.LookRotation(forward, up) * axisRemapRotation);
 
-        // Vector3 engineForward = transform.forward;
-
-        // if (invertRotation)
-        // {
-        //     engineForward *= -1;
-        // }
-
+        // 4. Логика торможения
         if (IsBraked() && Mathf.Abs(currentSpeedMagnitude) > 0f)
         {
-            Vector3 newVelocity = currentSpeed;
-            float newSpeed = Mathf.Sign(newVelocity.magnitude) * Mathf.Clamp(Mathf.Abs(newVelocity.magnitude) - brakingDeceleration * GetBrakeStrength() * Time.fixedDeltaTime, 0f, 25f);
-
-            currentSpeed = newVelocity.normalized * newSpeed;
-            currentSpeedMagnitude = newSpeed;
+            float brakeDecel = brakingDeceleration * GetBrakeStrength() * Time.fixedDeltaTime;
+            float speedAfterBraking = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - brakeDecel, 0f, 25f);
+            
+            currentSpeedMagnitude = speedAfterBraking * Mathf.Sign(currentSpeedMagnitude);
+            currentSpeed = transform.forward * currentSpeedMagnitude;
         }
 
+        // 5. Передача скорости ведомым вагонам (синхронизация поезда)
         if (this is HeadTrainModel htm && htm.IsActive())
         {
-            // currentSpeed = currentSpeedMagnitude * engineForward;
             foreach (TrainModel vagon in htm.chainedVagons)
             {
                 if (vagon != this)
                 {
+                    // Передаем только скалярную величину скорости!
                     vagon.SetCurrentSpeed(currentSpeedMagnitude);
+                    
+                    // Каждый вагон рассчитывает свой вектор скорости на основе СВОЕГО forward.
+                    // Это критически важно, если вагоны на разных сплайнах или в кривой поворота.
                     Vector3 newSpeedVector = vagon.transform.forward * currentSpeedMagnitude;
                     vagon.SetCurrentSpeedVector(newSpeedVector);
                 }
             }
         }
     }
+
 }

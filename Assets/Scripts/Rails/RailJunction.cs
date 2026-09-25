@@ -62,7 +62,7 @@ public class RailJunction : MonoBehaviour
     {
         // Проверяем, что вошедший объект — это вагон
         // (замените TrainCar на имя вашего компонента движения вагона)
-        Debug.Log($"{gameObject.name}: junction entered");
+        Debug.Log($"{other.name}: junction {gameObject.name} entered");
 
         if (other.TryGetComponent<TrainJunctionRegister>(out var jr))
         {
