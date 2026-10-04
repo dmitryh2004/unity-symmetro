@@ -20,8 +20,9 @@ public class HeadTrainModel : TrainModel
     [Header("Head panel")]
     [SerializeField] SpeedController speedController;
 
-    private void Start()
+    protected override void Init()
     {
+        base.Init();
         SetActive(active);
     }
 
@@ -66,7 +67,7 @@ public class HeadTrainModel : TrainModel
     override protected void UpdateState()
     {
         base.UpdateState();
-        speedController.SetSpeedText(GetRigidbody().linearVelocity.magnitude);
+        speedController.SetSpeedText(GetCurrentSpeed());
 
         bool cabinLightEnabled = IsPoweredUp() && this.cabinLightEnabled;
         if (cabinLightEnabled != cabinLight.IsActive()) cabinLight.SetState(cabinLightEnabled);

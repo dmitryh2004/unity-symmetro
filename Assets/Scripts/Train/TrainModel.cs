@@ -19,8 +19,9 @@ public class TrainModel : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private SplineContainer rail;
-    [SerializeField] private bool invertRotation = false;
     private float splineDirectionSign = 1f;
+    [SerializeField] private float currentSplineDistance = 0f;
+    [SerializeField] private float currentSplineLength = 0f;
 
     private float frictionDeceleration = 0.025f;
     [SerializeField] private float currentSpeedMagnitude = 0f;
@@ -88,8 +89,6 @@ public class TrainModel : MonoBehaviour
 
     public bool IsBraked() => brakeCylindersPressure > 0f;
     public float GetBrakeStrength() => brakeCylindersPressure / brakeCylindersMaxPressure;
-
-    public bool IsInvertRotation() => invertRotation;
 
     private bool ShouldInvert()
     {
@@ -183,6 +182,7 @@ public class TrainModel : MonoBehaviour
     {
         rail = newRail;
         currentSpline = rail.Splines[0];
+        InitializeCurrentSpline();
     }
 
     public SplineContainer GetCurrentRail() => rail;
@@ -211,15 +211,30 @@ public class TrainModel : MonoBehaviour
         SetTrainNumber(trainNumber);
     }
 
-    private void Start() {
+    private void Start()
+    {
+        Init();
+    }
+
+    protected virtual void Init()
+    {
+        InitializeCurrentSpline();
+    }
+
+    public void InitializeCurrentSpline()
+    {
         // Пример: при инициализации определяем знак один раз
         var native = new NativeSpline(currentSpline);
+        currentSplineLength = currentSpline.GetLength();
+
         SplineUtility.GetNearestPoint(native, transform.position, out float3 nearest, out float t);
+        currentSplineDistance = SplineUtility.ConvertIndexUnit(native, t, PathIndexUnit.Normalized, PathIndexUnit.Distance);
+
         Vector3 splineTangent = Vector3.Normalize(native.EvaluateTangent(t));
 
         // Допустим, изначально хотим, чтобы forward вагона совпадал с tangent
         splineDirectionSign = Vector3.Dot(transform.forward, splineTangent) >= 0f ? 1f : -1f;
-        splineDirectionSign *= invertRotation ? -1f : 1f;
+        // splineDirectionSign *= invertRotation ? -1f : 1f;
     }
 
     private void Update()
@@ -294,26 +309,23 @@ public class TrainModel : MonoBehaviour
     {
         // 1. Рассчитываем модуль скорости (учитывая трение)
         float newSpeedMagnitude = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, 25f);
+
         // Сохраняем знак направления (вперед/назад относительно самого вагона)
         float speedSign = Mathf.Sign(currentSpeedMagnitude); 
         currentSpeedMagnitude = newSpeedMagnitude * speedSign;
+        currentSplineDistance += currentSpeedMagnitude * Time.fixedDeltaTime * splineDirectionSign;
 
-        // Вектор скорости теперь ВСЕГДА сонаправлен с текущим поворотом вагона
-        currentSpeed = transform.forward * currentSpeedMagnitude;
-
-        // 2. Проекция на сплайн и поиск следующей точки
+        // 2. Поиск новой точки на сплайне
         var native = new NativeSpline(currentSpline);
-        
-        // Предсказываем позицию: текущая позиция + честное смещение по вектору скорости
-        Vector3 predictedPosition = transform.position + currentSpeed * Time.fixedDeltaTime;
-        
-        // Ищем ближайшую точку на сплайне для этой предсказанной позиции
-        float distance = SplineUtility.GetNearestPoint(native, predictedPosition, out float3 nearest, out float t);
+        float t = native.ConvertIndexUnit(currentSplineDistance, PathIndexUnit.Distance, PathIndexUnit.Normalized);
+
+        Vector3 localPosition = native.EvaluatePosition(t);
+        Debug.Log($"{gameObject.name}: spline length = {currentSplineLength}, spline distance = {currentSplineDistance} -> t = {t}, pos = {localPosition}");
 
         // Перемещаем физическое тело
-        rb.MovePosition(nearest);
+        rb.MovePosition(localPosition);
 
-        // 3. Вычисление честной ориентации вдоль сплайna
+        // 3. Вычисление поворота по точке сплайнa
         Vector3 splineTangent = Vector3.Normalize(native.EvaluateTangent(t));
         Vector3 splineUp = native.EvaluateUpVector(t);
 
@@ -321,10 +333,12 @@ public class TrainModel : MonoBehaviour
         Vector3 forward = splineTangent * splineDirectionSign;
 
         // Инверсия для «перевернутых» вагонов
+        /*
         if (invertRotation)
         {
             forward = -forward;
         }
+        */
 
         Vector3 up = splineUp;
 
@@ -351,13 +365,7 @@ public class TrainModel : MonoBehaviour
             {
                 if (vagon != this)
                 {
-                    // Передаем только скалярную величину скорости!
                     vagon.SetCurrentSpeed(currentSpeedMagnitude);
-                    
-                    // Каждый вагон рассчитывает свой вектор скорости на основе СВОЕГО forward.
-                    // Это критически важно, если вагоны на разных сплайнах или в кривой поворота.
-                    Vector3 newSpeedVector = vagon.transform.forward * currentSpeedMagnitude;
-                    vagon.SetCurrentSpeedVector(newSpeedVector);
                 }
             }
         }
