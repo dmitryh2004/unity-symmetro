@@ -2007,6 +2007,7 @@ MonoBehaviour:
   trainNumberLeft: {fileID: 4404562117554327869}
   trainNumberRight: {fileID: 6486761106147124378}
   rail: {fileID: 0}
+  vagonSpacing: 19.25
   currentSplineDistance: 0
   currentSplineLength: 0
   currentSpeedMagnitude: 0
@@ -2032,6 +2033,7 @@ MonoBehaviour:
   regularLampController: {fileID: 6862928959930535357}
   active: 0
   lightsEnabled: 0
+  forceInitializeVagons: 0
   headLights:
   - {fileID: 3291721824798125808}
   - {fileID: 8032911558695583115}
@@ -2043,6 +2045,8 @@ MonoBehaviour:
   cabinLight: {fileID: 8723224607793869310}
   controlPanelController: {fileID: 7017100689076194704}
   chainedVagons: []
+  recordingDistanceStep: 0.25
+  recordingAngleStep: 2
   speedController: {fileID: 9171744275174129135}
 --- !u!54 &7147831773650948378
 Rigidbody:
@@ -2294,7 +2298,7 @@ LODGroup:
     - renderer: {fileID: 3368064319874346288}
     - renderer: {fileID: 2259910706040430286}
     - renderer: {fileID: 1799418872137227249}
-  - screenRelativeHeight: 0.004
+  - screenRelativeHeight: 0.01
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3368064319874346288}

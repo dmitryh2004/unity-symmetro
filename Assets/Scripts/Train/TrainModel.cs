@@ -5,7 +5,7 @@ using UnityEngine.Splines;
 
 public class TrainModel : MonoBehaviour
 {
-    [SerializeField] Rigidbody rb;
+    [SerializeField] protected Rigidbody rb;
     [SerializeField] GameObject headJoint, tailJoint;
     [SerializeField] Animator leftDoorsAnim, rightDoorsAnim;
     [SerializeField] HeadTrainModel headVagon, tailVagon;
@@ -18,48 +18,50 @@ public class TrainModel : MonoBehaviour
     private bool leftDoorsOpened = false, rightDoorsOpened = false;
 
     [Header("Movement")]
-    [SerializeField] private SplineContainer rail;
-    private float splineDirectionSign = 1f;
-    [SerializeField] private float currentSplineDistance = 0f;
-    [SerializeField] private float currentSplineLength = 0f;
+    [SerializeField] protected SplineContainer rail;
+    [SerializeField] protected bool invertRotation = false;
+    protected float splineDirectionSign = 1f;
+    [SerializeField] protected float vagonSpacing = 19.25f;
+    [SerializeField] protected float currentSplineDistance = 0f;
+    [SerializeField] protected float currentSplineLength = 0f;
 
-    private float frictionDeceleration = 0.025f;
-    [SerializeField] private float currentSpeedMagnitude = 0f;
-    [SerializeField] private Vector3 currentSpeed = Vector3.zero;
+    protected float frictionDeceleration = 0.025f;
+    [SerializeField] protected float currentSpeedMagnitude = 0f;
+    [SerializeField] protected Vector3 currentSpeed = Vector3.zero;
 
     [Header("Braking")]
-    [SerializeField] private bool braking = false;
-    [SerializeField] private bool releasing = false;
-    [SerializeField] private bool compressorActive = false;
-    private float brakingDeceleration = 1.8f;
-    [SerializeField] private float brakeMagistralPressure = 0f;
-    [SerializeField] private float naporMagistralPressure = 0f;
-    [SerializeField] private float brakeCylindersPressure = 2f;
+    [SerializeField] protected bool braking = false;
+    [SerializeField] protected bool releasing = false;
+    [SerializeField] protected bool compressorActive = false;
+    protected float brakingDeceleration = 1.8f;
+    [SerializeField] protected float brakeMagistralPressure = 0f;
+    [SerializeField] protected float naporMagistralPressure = 0f;
+    [SerializeField] protected float brakeCylindersPressure = 2f;
 
     [Header("Braking constants")]
-    [SerializeField] private float brakeMagistralMaxPressure = 5.2f;
-    [SerializeField] private float naporMagistralMaxPressure = 7.5f;
-    [SerializeField] private float brakeCylindersMaxPressure = 2f;
-    [SerializeField] private float cylindersPressureChangeSpeed = 1f;
-    [SerializeField] private float magistralPressureChangeSpeed = .5f;
-    [SerializeField] private float compressorPressureChargeSpeed = .125f;
+    [SerializeField] protected float brakeMagistralMaxPressure = 5.2f;
+    [SerializeField] protected float naporMagistralMaxPressure = 7.5f;
+    [SerializeField] protected float brakeCylindersMaxPressure = 2f;
+    [SerializeField] protected float cylindersPressureChangeSpeed = 1f;
+    [SerializeField] protected float magistralPressureChangeSpeed = .5f;
+    [SerializeField] protected float compressorPressureChargeSpeed = .125f;
 
     [Header("Braking system visualisation")]
-    [SerializeField] private PressureGauge brakeMagistralGauge;
-    [SerializeField] private PressureGauge naporMagistralGauge;
-    [SerializeField] private PressureGauge brakeCylindersGauge;
+    [SerializeField] protected PressureGauge brakeMagistralGauge;
+    [SerializeField] protected PressureGauge naporMagistralGauge;
+    [SerializeField] protected PressureGauge brakeCylindersGauge;
 
     [Header("Indication lamps")]
-    [SerializeField] private TrainIndicationLampController brakeLamp;
-    [SerializeField] private TrainIndicationLampController doorLamp;
+    [SerializeField] protected TrainIndicationLampController brakeLamp;
+    [SerializeField] protected TrainIndicationLampController doorLamp;
 
     [Header("Vagon lamps")]
-    [SerializeField] private TrainLampController alarmLampController;
-    [SerializeField] private TrainLampController regularLampController;
+    [SerializeField] protected TrainLampController alarmLampController;
+    [SerializeField] protected TrainLampController regularLampController;
 
     bool regularLampsOn = false;
-
-    private Spline currentSpline;
+    
+    protected Spline currentSpline;
 
     public Rigidbody GetRigidbody()
     {
@@ -85,7 +87,10 @@ public class TrainModel : MonoBehaviour
     public void SetReleasing(bool r) => releasing = r;
 
     public bool IsCompressorActive() => compressorActive;
-    public void SetCompressorActive(bool a) => compressorActive = a; 
+    public void SetCompressorActive(bool a) => compressorActive = a;
+
+    public bool IsInvertRotation() => invertRotation;
+    public float GetSplineDirectionSign() => splineDirectionSign;
 
     public bool IsBraked() => brakeCylindersPressure > 0f;
     public float GetBrakeStrength() => brakeCylindersPressure / brakeCylindersMaxPressure;
@@ -305,70 +310,10 @@ public class TrainModel : MonoBehaviour
         if (regularLampState != regularLampController.IsActive()) regularLampController.SetState(regularLampState);
     }
 
-    private void FixedUpdate()
+    // Этот метод вызывает голова поезда, передавая вычисленные из истории мировые координаты
+    public void MoveVagonExplicitly(Vector3 worldPosition, Quaternion worldRotation)
     {
-        // 1. Рассчитываем модуль скорости (учитывая трение)
-        float newSpeedMagnitude = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, 25f);
-
-        // Сохраняем знак направления (вперед/назад относительно самого вагона)
-        float speedSign = Mathf.Sign(currentSpeedMagnitude); 
-        currentSpeedMagnitude = newSpeedMagnitude * speedSign;
-        currentSplineDistance += currentSpeedMagnitude * Time.fixedDeltaTime * splineDirectionSign;
-
-        // 2. Поиск новой точки на сплайне
-        var native = new NativeSpline(currentSpline);
-        float t = native.ConvertIndexUnit(currentSplineDistance, PathIndexUnit.Distance, PathIndexUnit.Normalized);
-
-        Vector3 localPosition = native.EvaluatePosition(t);
-        Debug.Log($"{gameObject.name}: spline length = {currentSplineLength}, spline distance = {currentSplineDistance} -> t = {t}, pos = {localPosition}");
-
-        // Перемещаем физическое тело
-        rb.MovePosition(localPosition);
-
-        // 3. Вычисление поворота по точке сплайнa
-        Vector3 splineTangent = Vector3.Normalize(native.EvaluateTangent(t));
-        Vector3 splineUp = native.EvaluateUpVector(t);
-
-        // Базовое направление с учётом однажды выбранного знака
-        Vector3 forward = splineTangent * splineDirectionSign;
-
-        // Инверсия для «перевернутых» вагонов
-        /*
-        if (invertRotation)
-        {
-            forward = -forward;
-        }
-        */
-
-        Vector3 up = splineUp;
-
-        var remappedForward = new Vector3(0, 0, 1);
-        var remappedUp = new Vector3(0, 1, 0);
-        var axisRemapRotation = Quaternion.Inverse(Quaternion.LookRotation(remappedForward, remappedUp));
-
-        rb.MoveRotation(Quaternion.LookRotation(forward, up) * axisRemapRotation);
-
-        // 4. Логика торможения
-        if (IsBraked() && Mathf.Abs(currentSpeedMagnitude) > 0f)
-        {
-            float brakeDecel = brakingDeceleration * GetBrakeStrength() * Time.fixedDeltaTime;
-            float speedAfterBraking = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - brakeDecel, 0f, 25f);
-            
-            currentSpeedMagnitude = speedAfterBraking * Mathf.Sign(currentSpeedMagnitude);
-            currentSpeed = transform.forward * currentSpeedMagnitude;
-        }
-
-        // 5. Передача скорости ведомым вагонам (синхронизация поезда)
-        if (this is HeadTrainModel htm && htm.IsActive())
-        {
-            foreach (TrainModel vagon in htm.chainedVagons)
-            {
-                if (vagon != this)
-                {
-                    vagon.SetCurrentSpeed(currentSpeedMagnitude);
-                }
-            }
-        }
+        rb.MovePosition(worldPosition);
+        rb.MoveRotation(worldRotation);
     }
-
 }

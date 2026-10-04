@@ -5713,7 +5713,9 @@ MonoBehaviour:
   trainNumberLeft: {fileID: 6220995100317398532}
   trainNumberRight: {fileID: 2873197073291888422}
   rail: {fileID: 0}
-  invertRotation: 0
+  vagonSpacing: 19.25
+  currentSplineDistance: 0
+  currentSplineLength: 0
   currentSpeedMagnitude: 0
   currentSpeed: {x: 0, y: 0, z: 0}
   braking: 0
@@ -5998,7 +6000,7 @@ LODGroup:
     - renderer: {fileID: 7666287355580705486}
     - renderer: {fileID: 1930713448390849757}
     - renderer: {fileID: 2018240700070309717}
-  - screenRelativeHeight: 0.004
+  - screenRelativeHeight: 0.01
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5309930140279803901}
