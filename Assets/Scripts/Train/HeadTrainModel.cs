@@ -46,6 +46,8 @@ public class HeadTrainModel : TrainModel
         if (rail == null || rail.Spline == null) return;
         currentSpline = rail.Spline;
 
+        InitializeCurrentSpline();
+
         ResetHistory();
         totalDrivenDistance = 0f;
         var native = new NativeSpline(currentSpline);
