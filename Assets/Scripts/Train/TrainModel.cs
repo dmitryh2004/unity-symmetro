@@ -240,6 +240,8 @@ public class TrainModel : MonoBehaviour
         // Допустим, изначально хотим, чтобы forward вагона совпадал с tangent
         splineDirectionSign = Vector3.Dot(transform.forward, splineTangent) >= 0f ? 1f : -1f;
         // splineDirectionSign *= invertRotation ? -1f : 1f;
+
+        Debug.Log($"{gameObject.name}: forward = {transform.forward}, spline tangent = {splineTangent}, dot = {Vector3.Dot(transform.forward, splineTangent)}, spline direction sign = {splineDirectionSign}");
     }
 
     private void Update()
