@@ -232,7 +232,9 @@ public class TrainModel : MonoBehaviour
         var native = new NativeSpline(currentSpline);
         currentSplineLength = currentSpline.GetLength();
 
-        SplineUtility.GetNearestPoint(native, transform.position, out float3 nearest, out float t);
+        float3 localPosition = rail.transform.InverseTransformPoint(transform.position);
+
+        SplineUtility.GetNearestPoint(native, localPosition, out float3 nearest, out float t);
         currentSplineDistance = SplineUtility.ConvertIndexUnit(native, t, PathIndexUnit.Normalized, PathIndexUnit.Distance);
 
         Vector3 splineTangent = Vector3.Normalize(native.EvaluateTangent(t));
