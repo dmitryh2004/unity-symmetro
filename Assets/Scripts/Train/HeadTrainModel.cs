@@ -22,6 +22,12 @@ public class HeadTrainModel : TrainModel
     private List<PathPoint> pathHistory = new List<PathPoint>();
     private float totalDrivenDistance = 0f;
 
+    // dead end processing
+    [SerializeField] private bool isDeadEnd = false;
+    [SerializeField] private bool beginIsDeadEnd = false;
+    [SerializeField] private bool endIsDeadEnd = false;
+    [SerializeField] private float deadEndPosition = -1f;
+
     [Header("Настройки оптимизации истории")]
     [Tooltip("Записывать точку, если поезд проехал это расстояние (в метрах)")]
     [SerializeField] private float recordingDistanceStep = 0.25f;
@@ -41,6 +47,33 @@ public class HeadTrainModel : TrainModel
             InitializeVagons();
         }
     }
+
+    public override void InitializeCurrentSpline()
+    {
+        base.InitializeCurrentSpline();
+
+        if (rail.TryGetComponent(out RailDeadEnd deadEnd))
+        {
+            isDeadEnd = true;
+            float threshold = deadEnd.DeadEndThreshold;
+            beginIsDeadEnd = deadEnd.BeginIsDeadEnd;
+            endIsDeadEnd = deadEnd.EndIsDeadEnd;
+
+            if (beginIsDeadEnd)
+            {
+                deadEndPosition = threshold;
+            }
+            else if (endIsDeadEnd)
+            {
+                deadEndPosition = currentSplineLength - threshold;
+            }
+        }
+        else
+        {
+            isDeadEnd = false;
+        }
+    }
+
     private void InitializeVagons()
     {
         if (rail == null || rail.Spline == null) return;
@@ -140,6 +173,24 @@ public class HeadTrainModel : TrainModel
         }
     }
 
+    public float GetMaxAllowedSpeed()
+    {
+        float maxAllowedSpeed = 25f; // из-за тупиков
+        if (isDeadEnd)
+        {
+            float remainingDistance = 0f;
+            if (beginIsDeadEnd) remainingDistance = currentSplineDistance - deadEndPosition;
+            else if (endIsDeadEnd) remainingDistance = deadEndPosition - currentSplineDistance;
+
+            remainingDistance = Mathf.Clamp(remainingDistance, 0f, remainingDistance);
+            Debug.Log($"remaining distance = {remainingDistance} m");
+
+            float deadEndAllowedSpeed = Mathf.Sqrt(2 * brakingDeceleration * remainingDistance);
+            maxAllowedSpeed = Mathf.Min(maxAllowedSpeed, deadEndAllowedSpeed);
+        }
+
+        return maxAllowedSpeed;
+    }
 
     private void FixedUpdate()
     {
@@ -148,14 +199,16 @@ public class HeadTrainModel : TrainModel
         if (!active) return;
 
         // 1. Физика активной головы
-        float newSpeedMagnitude = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, 25f);
+        float maxAllowedSpeed = GetMaxAllowedSpeed();
+
+        float newSpeedMagnitude = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, maxAllowedSpeed);
         float speedSign = Mathf.Sign(currentSpeedMagnitude);
         currentSpeedMagnitude = newSpeedMagnitude * speedSign;
 
         if (IsBraked() && Mathf.Abs(currentSpeedMagnitude) > 0f)
         {
             float brakeDecel = brakingDeceleration * GetBrakeStrength() * Time.fixedDeltaTime;
-            float speedAfterBraking = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - brakeDecel, 0f, 25f);
+            float speedAfterBraking = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - brakeDecel, 0f, maxAllowedSpeed);
             currentSpeedMagnitude = speedAfterBraking * speedSign;
         }
 

@@ -50,7 +50,7 @@ public class TrainEngine : MonoBehaviour
         float speedChange = factor * accelerationSpeed * Time.fixedDeltaTime;
 
         float newSpeed = (headTrainModel.GetCurrentSpeed() + speedChange);
-        newSpeed = Mathf.Clamp(newSpeed, minSpeed, maxSpeed);
+        newSpeed = Mathf.Clamp(newSpeed, minSpeed, headTrainModel.GetMaxAllowedSpeed());
         // if (newSpeed != 0f)
         //     Debug.Log($"newSpeed = {newSpeed}");
 

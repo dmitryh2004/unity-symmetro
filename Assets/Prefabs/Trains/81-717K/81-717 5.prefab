@@ -2007,6 +2007,7 @@ MonoBehaviour:
   trainNumberLeft: {fileID: 4404562117554327869}
   trainNumberRight: {fileID: 6486761106147124378}
   rail: {fileID: 0}
+  invertRotation: 0
   vagonSpacing: 19.25
   currentSplineDistance: 0
   currentSplineLength: 0
@@ -7072,8 +7073,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4383431417415365940}
-        m_TargetAssemblyTypeName: TrainController, Assembly-CSharp
-        m_MethodName: _SetCompressorActive
+        m_TargetAssemblyTypeName: HeadTrainController, Assembly-CSharp
+        m_MethodName: SetCompressorActive
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

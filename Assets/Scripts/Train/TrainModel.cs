@@ -226,7 +226,7 @@ public class TrainModel : MonoBehaviour
         InitializeCurrentSpline();
     }
 
-    public void InitializeCurrentSpline()
+    public virtual void InitializeCurrentSpline()
     {
         // Пример: при инициализации определяем знак один раз
         var native = new NativeSpline(currentSpline);

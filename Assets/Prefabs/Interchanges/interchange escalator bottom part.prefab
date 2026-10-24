@@ -802,6 +802,10 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6867524716611244439, guid: d068464605a737f4f9cf88421f044cba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0125
+      objectReference: {fileID: 0}
     - target: {fileID: 8001974330678796841, guid: d068464605a737f4f9cf88421f044cba, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 18
