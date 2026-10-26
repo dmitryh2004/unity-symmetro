@@ -1249,16 +1249,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ambient: 0.5
-    - _Bevel: 0.5
+    - _Bevel: 1
     - _BevelClamp: 0
     - _BevelOffset: 0
     - _BevelRoundness: 0
-    - _BevelWidth: 0
+    - _BevelWidth: 0.5
     - _BumpFace: 0
     - _BumpOutline: 0
     - _ColorMask: 15
     - _CullMode: 0
-    - _Diffuse: 0.5
+    - _Diffuse: 0
     - _FaceDilate: 0
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
@@ -1275,15 +1275,15 @@ Material:
     - _OutlineUVSpeedY: 0
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
-    - _Reflectivity: 10
+    - _Reflectivity: 5
     - _ScaleRatioA: 0.9375
     - _ScaleRatioB: 0.76171875
     - _ScaleRatioC: 0.76171875
     - _ScaleX: 1
     - _ScaleY: 1
-    - _ShaderFlags: 0
+    - _ShaderFlags: 1
     - _Sharpness: 0
-    - _SpecularPower: 2
+    - _SpecularPower: 4
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0

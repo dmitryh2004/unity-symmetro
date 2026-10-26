@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1038021907236599721, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
       propertyPath: m_Name
-      value: svetofor Variant
+      value: svetofor none-yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
+      propertyPath: states.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
       propertyPath: states.Array.data[0].topLightActive
