@@ -61,6 +61,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
+      propertyPath: states.Array.data[1].topLightActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
       propertyPath: states.Array.data[0].topLightColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -73,7 +77,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
+      propertyPath: states.Array.data[1].topLightColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
+      propertyPath: states.Array.data[1].topLightColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
       propertyPath: states.Array.data[1].topLightColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
+      propertyPath: states.Array.data[1].bottomLightActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
+      propertyPath: states.Array.data[1].bottomLightColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404760686516736153, guid: bff62e2dfdf44d74cad124ed0be25df9, type: 3}
+      propertyPath: states.Array.data[1].bottomLightColor.r
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
