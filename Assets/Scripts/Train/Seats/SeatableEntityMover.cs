@@ -33,6 +33,9 @@ public class SeatableEntityMover : MonoBehaviour
             var rotationVelocity = Vector3.Cross(omega, r);
 
             targetVelocityWorld += rotationVelocity;
+
+            transform.Rotate(-omega * Time.fixedDeltaTime);
+            // transform.Rotate(transform.up, omega.magnitude * Mathf.Rad2Deg * Time.fixedDeltaTime);
         }
         else
         {

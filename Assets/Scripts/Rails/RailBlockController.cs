@@ -4,11 +4,16 @@ using UnityEngine;
 public class RailBlockController : MonoBehaviour
 {
     [SerializeField] RailBlockController prev1, prev2, prev3, prev4;
+    [Space]
     [SerializeField] RailBlockController next1, next2, next3, next4;
+    [Space]
     [SerializeField] bool occupied = false;
-    [SerializeField] List<Transform> occupiers = new();
+    [SerializeField] List<TrainModel> occupiers = new();
     [SerializeField] List<SvetoforBlockController> linkedSvetofors = new();
+    [Tooltip("Максимальная скорость на участке в км/ч")][SerializeField] float maxAllowedSpeed = 60f;
 
+    // Максимальная скорость в м/с.
+    public float MaxAllowedSpeed => maxAllowedSpeed / 3.6f;
     public bool IsOccupied() => occupied;
     public int GetNumberOfFreeNextBlocks()
     {
@@ -20,20 +25,25 @@ public class RailBlockController : MonoBehaviour
         return 4;
     }
 
-    public void AddOccupier(Transform occupier)
+    public void AddOccupier(TrainModel occupier)
     {
         if (!occupiers.Contains(occupier))
         {
             occupiers.Add(occupier);
             occupied = true;
             UpdateSvetofors();
+            if (prev1 != null) prev1.UpdateSvetofors();
+            if (prev2 != null) prev2.UpdateSvetofors();
+            if (prev3 != null) prev3.UpdateSvetofors();
+            if (prev4 != null) prev4.UpdateSvetofors();
         }
     }
 
-    public void RemoveOccupier(Transform occupier)
+    public void RemoveOccupier(TrainModel occupier)
     {
         if (occupiers.Contains(occupier))
         {
+            if (occupier is HeadTrainModel htm) htm.ResetRailBlockAllowedSpeed();
             occupiers.Remove(occupier);
         }
         occupied = occupiers.Count > 0;
@@ -49,6 +59,13 @@ public class RailBlockController : MonoBehaviour
         foreach (SvetoforBlockController svetofor in linkedSvetofors)
         {
             svetofor.SetState(GetNumberOfFreeNextBlocks());
+        }
+        foreach (TrainModel tm in occupiers)
+        {
+            if (tm is HeadTrainModel htm)
+            {
+                htm.SetRailBlockAllowedSpeed(MaxAllowedSpeed);
+            }
         }
     }
 }

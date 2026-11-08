@@ -4,6 +4,8 @@ using UnityEngine.Splines;
 
 public class HeadTrainModel : TrainModel
 {
+    [SerializeField] float railBlockAllowedSpeed = 25f;
+
     [Header("Head part management")]
     [SerializeField] bool active;
     [SerializeField] bool lightsEnabled;
@@ -47,6 +49,15 @@ public class HeadTrainModel : TrainModel
             InitializeVagons();
         }
     }
+
+    public void SetRailBlockAllowedSpeed(float speed)
+    {
+        railBlockAllowedSpeed = speed;
+    }
+
+    public void ResetRailBlockAllowedSpeed() => railBlockAllowedSpeed = 25f;
+
+    public float GetRailBlockAllowedSpeed() => railBlockAllowedSpeed;
 
     public override void InitializeCurrentSpline()
     {
@@ -204,6 +215,11 @@ public class HeadTrainModel : TrainModel
         float newSpeedMagnitude = Mathf.Clamp(Mathf.Abs(currentSpeedMagnitude) - frictionDeceleration * Time.fixedDeltaTime, 0f, maxAllowedSpeed);
         float speedSign = Mathf.Sign(currentSpeedMagnitude);
         currentSpeedMagnitude = newSpeedMagnitude * speedSign;
+
+        if (currentSpeedMagnitude > railBlockAllowedSpeed)
+        {
+            SetBraking(true);
+        }
 
         if (IsBraked() && Mathf.Abs(currentSpeedMagnitude) > 0f)
         {

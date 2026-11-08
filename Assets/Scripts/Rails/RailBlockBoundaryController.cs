@@ -10,7 +10,8 @@ public class RailBlockBoundaryController : MonoBehaviour
         if (!other.transform.TryGetComponent(out TrainJunctionRegister tjr)) return;
         if (input)
         {
-            linkedRailBlock.AddOccupier(other.transform);
+            TrainModel model = tjr.GetModel();
+            linkedRailBlock.AddOccupier(model);
         }
     }
 
@@ -19,7 +20,8 @@ public class RailBlockBoundaryController : MonoBehaviour
         if (!other.transform.TryGetComponent(out TrainJunctionRegister tjr)) return;
         if (output)
         {
-            linkedRailBlock.RemoveOccupier(other.transform);
+            TrainModel model = tjr.GetModel();
+            linkedRailBlock.RemoveOccupier(model);
         }
     }
 }

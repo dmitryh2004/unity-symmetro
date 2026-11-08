@@ -4,7 +4,7 @@ public class ControlPanelController : MonoBehaviour
 {
     [SerializeField] HeadTrainModel linkedModel;
     [SerializeField] ControlPanelElementController doorsLeft, doorsRight;
-    [SerializeField] ControlPanelSvetodiodController doorsLeft_s, doorsRight_s;
+    [SerializeField] ControlPanelSvetodiodController doorsLeft_s, doorsRight_s, speedOch_s, speed0_s, speed40_s, speed60_s, speed70_s, speed80_s;
     [SerializeField] SpeedController speedController;
 
     public void UpdateState(bool newState)
@@ -21,5 +21,10 @@ public class ControlPanelController : MonoBehaviour
             doorsRight_s.ChangeState(rightDoorsOpened);
         }
         speedController.gameObject.SetActive(newState);
+    }
+
+    public void UpdateSpeedSvetodiods()
+    {
+        
     }
 }
